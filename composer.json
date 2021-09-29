@@ -1,0 +1,47 @@
+{
+    "name": "luischavez/livewire-extensions",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luis Chávez",
+            "email": "frost_leviathan@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "illuminate/support": "^8.50",
+        "livewire/livewire": "^2.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4|^9.0",
+        "orchestra/testbench": "^6.19"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Luischavez\\": "src/Luischavez"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Luischavez\\Livewire\\Extensions\\LivewireExtensionsServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    }
+}

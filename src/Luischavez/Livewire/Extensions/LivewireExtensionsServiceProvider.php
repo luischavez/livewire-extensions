@@ -1,0 +1,83 @@
+<?php
+
+namespace Luischavez\Livewire\Extensions;
+
+use Illuminate\Support\ServiceProvider;
+use Livewire\LivewireManager;
+use Luischavez\Livewire\Extensions\Commands\IconifyCommand;
+use Luischavez\Livewire\Extensions\Widgets\Alert;
+use Luischavez\Livewire\Extensions\Widgets\AuthSystem;
+use Luischavez\Livewire\Extensions\Widgets\Blade\Button;
+use Luischavez\Livewire\Extensions\Widgets\Blade\Icon;
+use Luischavez\Livewire\Extensions\Widgets\Blade\Loading;
+use Luischavez\Livewire\Extensions\Widgets\Blade\Spawner;
+use Luischavez\Livewire\Extensions\Widgets\Dialog;
+use Luischavez\Livewire\Extensions\Widgets\SmartInput;
+
+/**
+ * Service provider for livewire-extensions package.
+ */
+class LivewireExtensionsServiceProvider extends ServiceProvider
+{
+    /**
+     * @inheritDoc
+     */
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/../../../../config/livewire-ext.php' => config_path('livewire-ext.php'),
+        ], 'livewire-ext-config');
+
+        $this->publishes([
+            __DIR__.'/../../../../resources/views' => resource_path('views/vendor/livewire-ext'),
+        ], 'livewire-ext-views');
+
+        $this->publishes([
+            __DIR__.'/../../../../resources/lang' => resource_path('lang/vendor/livewire-ext'),
+        ], 'livewire-ext-lang');
+
+        $this->publishes([
+            __DIR__.'/../../../../resources/icons' => resource_path('icons'),
+        ], 'livewire-ext-icons');
+
+        $this->loadTranslationsFrom(__DIR__.'/../../../../resources/lang', 'livewire-ext');
+        $this->loadViewsFrom(__DIR__.'/../../../../resources/views', 'livewire-ext');
+
+        $this->loadViewComponentsAs('widgets', [
+            Button::class,
+            Icon::class,
+            Loading::class,
+            Spawner::class,
+        ]);
+
+        $this->app->bind(LivewireManager::class, function() {
+            /**
+             * @var LivewireExtensionsManager
+             */
+            $manager = app(LivewireExtensionsManager::class);
+
+            $manager->component(AuthSystem::getName(), AuthSystem::class);
+            $manager->component(Alert::getName(), Alert::class);
+            $manager->component(Dialog::getName(), Dialog::class);
+            $manager->component(SmartInput::getName(), SmartInput::class);
+
+            return $manager;
+        });
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                IconifyCommand::class,
+            ]);
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../../../../config/livewire-ext.php', 'livewire-ext',
+        );
+    }
+}

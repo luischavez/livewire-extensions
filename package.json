@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "docsify-init": "docsify init ./docs",
+    "docsify-server": "docsify serve docs"
+  },
+  "devDependencies": {
+    "docsify-cli": "^4.4.3"
+  }
+}
