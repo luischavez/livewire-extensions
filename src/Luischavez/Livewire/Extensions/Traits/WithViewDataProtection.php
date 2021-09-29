@@ -66,7 +66,7 @@ trait WithViewDataProtection
             $memo = $response->memo;
 
             foreach ($memo['data'] as $key => $value) {
-                if ($key == 'as') continue;
+                if ($key == 'tag') continue;
 
                 try {
                     $this->{$key} = null;
