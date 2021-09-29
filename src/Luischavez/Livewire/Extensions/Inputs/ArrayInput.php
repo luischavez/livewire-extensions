@@ -96,7 +96,10 @@ class ArrayInput extends Input
     public function mount(): void
     {
         if ($this->multiple) {
-            $this->value = [];
+            if (!is_array($this->value)) {
+                $this->value = [];
+            }
+
             $this->searchEnabled = false;
         }
 
@@ -106,7 +109,13 @@ class ArrayInput extends Input
         }
 
         if ($this->value !== null) {
-            if (!is_array($this->value)) {
+            if (is_array($this->value)) {
+                $value = $this->value;
+                $this->value = [];
+                foreach ($value as $id) {
+                    $this->select($id);
+                }
+            } else {
                 $this->select($this->value);
             }
         }
