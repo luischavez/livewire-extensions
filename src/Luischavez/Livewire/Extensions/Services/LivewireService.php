@@ -3,19 +3,14 @@
 namespace Luischavez\Livewire\Extensions\Services;
 
 use Livewire\Component;
+use Luischavez\Livewire\Extensions\Reflection\Inspector;
+use Luischavez\Livewire\Extensions\Reflection\Property;
 
 /**
  * Base Livewire service.
  */
 abstract class LivewireService
 {
-    /**
-     * All livewire services.
-     *
-     * @var array
-     */
-    protected static array $services = [];
-
     /**
      * Related component of this service.
      *
@@ -32,8 +27,6 @@ abstract class LivewireService
     public function setup(Component $component): void
     {
         $this->component = $component;
-
-        self::$services[$component->id][static::class] = $this;
     }
 
     /**
@@ -120,18 +113,28 @@ abstract class LivewireService
     {
         $type = static::class;
 
-        if (isset(static::$services[$component->id][$type])) {
-            return static::$services[$component->id][$type];
+        /**
+         * @var Property|null
+         */
+        $service = Inspector::inspect($component)
+            ->property()
+            ->withType($type)
+            ->first();
+
+        if ($service !== null && $service->value() !== null) {
+            return $service->value();
         }
 
-        if ($initialize) {
+        if ($initialize && $service !== null) {
             /**
              * @var LivewireService
              */
-            $service = app()->make($type);
-            $service->setup($component);
+            $instance = app()->make($type);
+            $instance->setup($component);
 
-            return $service;
+            $service->set($instance);
+
+            return $instance;
         }
 
         return null;

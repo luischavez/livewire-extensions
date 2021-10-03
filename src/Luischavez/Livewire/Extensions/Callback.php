@@ -3,7 +3,6 @@
 namespace Luischavez\Livewire\Extensions;
 
 use Livewire\Component;
-use Livewire\LivewireManager;
 use Luischavez\Livewire\Extensions\Exceptions\CallbackException;
 use Luischavez\Livewire\Extensions\Services\TaggingService;
 use Luischavez\Livewire\Extensions\Utils\RouteUtils;
@@ -22,6 +21,13 @@ class Callback extends Transformable
     protected static bool $encrypted = true;
 
     /**
+     * Component.
+     *
+     * @var Component
+     */
+    protected Component $component;
+
+    /**
      * Caller of this callback.
      *
      * @var array
@@ -36,7 +42,7 @@ class Callback extends Transformable
      *
      * @var array
      */
-    protected array $component = [
+    protected array $creator = [
         'name'  => null,
         'id'    => null,
     ];
@@ -63,42 +69,32 @@ class Callback extends Transformable
     public function __construct(Component|Caller|null $caller = null)
     {
         if ($caller !== null) {
-            $component = null;
             if ($caller instanceof Component) {
                 $this->caller['type'] = 'component';
                 $this->caller['name'] = $caller->getName();
-                $component = $caller;
+                $this->component = $caller;
             } else if ($caller instanceof Caller) {
                 $this->caller['type'] = $caller->type();
                 $this->caller['name'] = $caller->name();
-                $component = $caller->component();
+                $this->component = $caller->component();
             }
 
-            if ($component !== null) {
-                $this->component['name'] = $component->getName();
-                $this->component['id'] = $component->id;
+            if ($this->component !== null) {
+                $this->creator['name'] = $this->component->getName();
+                $this->creator['id'] = $this->component->id;
             }
         }
     }
 
     /**
-     * Gets the component.
+     * Sets the component.
      *
-     * @return Component|null
+     * @param Component $component component
+     * @return void
      */
-    protected function component(): ?Component
+    public function setComponent(Component $component): void
     {
-        /**
-         * @var LivewireExtensionsManager
-         */
-        $livewire = app()->make(LivewireManager::class);
-        $component = $livewire->findInstance($this->component['id']);
-
-        if ($component === null) {
-            $component = $livewire->firstComponent();
-        }
-
-        return $component;
+        $this->component = $component;
     }
 
     /**
@@ -173,12 +169,11 @@ class Callback extends Transformable
         }
 
         $type = $this->caller['type'];
-        $component = $this->component();
 
         /**
          * @var TaggingService
          */
-        $taggingService = TaggingService::of($component);
+        $taggingService = TaggingService::of($this->component);
 
         $tag = $taggingService !== null
             ? $taggingService->tag()
@@ -197,7 +192,7 @@ class Callback extends Transformable
             $event = 'callerCallback';
         }
 
-        $this->addRoute($type, $event, $tag, $component->getName(), ...$parameters);
+        $this->addRoute($type, $event, $tag, $this->component->getName(), ...$parameters);
 
         return $this;
     }
@@ -210,8 +205,6 @@ class Callback extends Transformable
      */
     public function fire(mixed ...$parameters)
     {
-        $component = $this->component();
-
         foreach ($this->routes() as $definition) {
             $route = $definition['route'];
 
@@ -222,7 +215,7 @@ class Callback extends Transformable
                 $routeParameters = array_merge($this->extra, $definition['parameters'], $parameters);
             }
 
-            TaggingService::emitToRouteWithComponent($component, $route, ...$routeParameters);
+            TaggingService::emitToRouteWithComponent($this->component, $route, ...$routeParameters);
         }
     }
 
@@ -233,7 +226,7 @@ class Callback extends Transformable
     {
         $data = [
             'caller'    => $this->caller,
-            'component' => $this->component,
+            'creator'   => $this->creator,
             'extra'     => $this->extra,
             'routes'    => $this->routes,
         ];
@@ -253,13 +246,13 @@ class Callback extends Transformable
         }
 
         $caller = $value['caller'] ?? [];
-        $component = $value['component'] ?? [];
+        $creator = $value['creator'] ?? [];
         $extra = $value['extra'] ?? [];
         $routes = $value['routes'] ?? [];
 
         $callback = new Callback();
         $callback->caller = $caller;
-        $callback->component = $component;
+        $callback->creator = $creator;
         $callback->extra = $extra;
         $callback->routes = $routes;
 

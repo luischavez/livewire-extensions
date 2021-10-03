@@ -91,6 +91,23 @@ trait WithAuth
     }
 
     /**
+     * Refresh the auth data.
+     *
+     * @return void
+     */
+    public function refreshAuth(): void
+    {
+        if (auth()->check()) {
+            $this->userData = $this->authService->filterUserData(
+                auth()->user(),
+                $this->hiddenUserData,
+                $this->visibleUserData);
+        } else {
+            $this->userData = [];
+        }
+    }
+
+    /**
      * Run on user logged event.
      *
      * @return void

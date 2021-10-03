@@ -72,12 +72,11 @@ class SpawnService extends LivewireService
          */
         $component = null;
 
-        foreach ($livewire->instances() as $instance) {
+        /*foreach ($livewire->instances() as $instance) {
             if ($instance->tag == $tag) {
                 $component = $instance;
-                //dd($component);
             }
-        }
+        }*/
 
         if ($component !== null) {
             /**

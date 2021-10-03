@@ -3,7 +3,7 @@
 namespace Luischavez\Livewire\Extensions;
 
 use Illuminate\Support\ServiceProvider;
-use Livewire\LivewireManager;
+use Livewire\Livewire;
 use Luischavez\Livewire\Extensions\Commands\IconifyCommand;
 use Luischavez\Livewire\Extensions\Widgets\Alert;
 use Luischavez\Livewire\Extensions\Widgets\AuthSystem;
@@ -50,19 +50,10 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
             Spawner::class,
         ]);
 
-        $this->app->bind(LivewireManager::class, function() {
-            /**
-             * @var LivewireExtensionsManager
-             */
-            $manager = app(LivewireExtensionsManager::class);
-
-            $manager->component(AuthSystem::getName(), AuthSystem::class);
-            $manager->component(Alert::getName(), Alert::class);
-            $manager->component(Dialog::getName(), Dialog::class);
-            $manager->component(SmartInput::getName(), SmartInput::class);
-
-            return $manager;
-        });
+        Livewire::component(AuthSystem::getName(), AuthSystem::class);
+        Livewire::component(Alert::getName(), Alert::class);
+        Livewire::component(Dialog::getName(), Dialog::class);
+        Livewire::component(SmartInput::getName(), SmartInput::class);
 
         if ($this->app->runningInConsole()) {
             $this->commands([

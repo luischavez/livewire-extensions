@@ -514,7 +514,7 @@ class ProxyService extends LivewireService
 
             $protectedProperties = $this->proxy->getProtectedProperties();
             PropertyProtectionService::throwIfProtected($realKey, $protectedProperties);
-            
+
             $this->proxy->updating($realKey, $value);
         }
     }

@@ -41,6 +41,15 @@ class CallbackService extends LivewireService
          * @var Property
          */
         foreach ($properties as $property) {
+            /**
+             * @var Callback|null
+             */
+            $callback = $property->value();
+
+            if ($callback !== null) {
+                $callback->setComponent($this->component);
+            }
+
             $this->callbacks[] = $property->name();
         }
     }
@@ -120,6 +129,7 @@ class CallbackService extends LivewireService
     public function handleRegisterEvent(string $callbackName, mixed $callback): void
     {
         $callback = Callback::fromJavascript($callback);
+        $callback->setComponent($this->component);
 
         $this->setCallback($callbackName, $callback);
     }
