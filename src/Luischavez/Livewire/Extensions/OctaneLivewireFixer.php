@@ -8,7 +8,7 @@ use Luischavez\Livewire\Extensions\Reflection\Method;
 use Luischavez\Livewire\Extensions\Reflection\Property;
 
 /**
- * Temp fix for octane kept the listeners on memory on each request.
+ * Temp fix for octane kept the listeners data on memory on each request.
  */
 class OctaneLivewireFixer
 {
