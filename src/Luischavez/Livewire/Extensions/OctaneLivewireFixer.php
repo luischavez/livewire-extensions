@@ -2,7 +2,9 @@
 
 namespace Luischavez\Livewire\Extensions;
 
+use Livewire\LivewireServiceProvider;
 use Luischavez\Livewire\Extensions\Reflection\Inspector;
+use Luischavez\Livewire\Extensions\Reflection\Method;
 use Luischavez\Livewire\Extensions\Reflection\Property;
 
 /**
@@ -32,6 +34,20 @@ class OctaneLivewireFixer
 
         if ($listeners !== null) {
             $listeners->set([]);
+
+            $livewireServiceProvider = new LivewireServiceProvider($event->sandbox);
+
+            /**
+             * @var Method|null
+             */
+            $registerFeatures = Inspector::inspect($livewireServiceProvider)
+                ->method()
+                ->withName('registerFeatures')
+                ->first();
+
+            if ($registerFeatures !== null) {
+                $registerFeatures->invoke();
+            }
         }
     }
 }
