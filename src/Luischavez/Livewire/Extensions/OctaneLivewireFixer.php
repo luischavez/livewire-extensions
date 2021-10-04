@@ -25,7 +25,7 @@ class OctaneLivewireFixer
         /**
          * @var Property|null
          */
-        $listeners = Inspector::inspect($event->sandbox->resolved('livewire'))
+        $listeners = Inspector::inspect($event->sandbox['livewire'])
             ->property()
             ->withName('listeners')
             ->first();
