@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4482b7331d3b0fb6d114b7c8cba5735",
+    "content-hash": "8efdd59a058d8551f8147d47749b0e74",
     "packages": [
         {
             "name": "brick/math",
@@ -1081,16 +1081,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "dev-octane-support",
+            "version": "dev-octane",
             "source": {
                 "type": "git",
                 "url": "https://github.com/luischavez/livewire.git",
-                "reference": "725460334b49c36696bc2f33f0d2229033e9dbd5"
+                "reference": "f5f3e001bd2ee10982d178f9d814fa46b0438747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/luischavez/livewire/zipball/725460334b49c36696bc2f33f0d2229033e9dbd5",
-                "reference": "725460334b49c36696bc2f33f0d2229033e9dbd5",
+                "url": "https://api.github.com/repos/luischavez/livewire/zipball/f5f3e001bd2ee10982d178f9d814fa46b0438747",
+                "reference": "f5f3e001bd2ee10982d178f9d814fa46b0438747",
                 "shasum": ""
             },
             "require": {
@@ -1145,7 +1145,7 @@
             ],
             "description": "A front-end framework for Laravel.",
             "support": {
-                "source": "https://github.com/luischavez/livewire/tree/octane-support"
+                "source": "https://github.com/luischavez/livewire/tree/octane"
             },
             "funding": [
                 {
@@ -1153,7 +1153,7 @@
                     "url": "https://github.com/calebporzio"
                 }
             ],
-            "time": "2021-10-03T19:16:08+00:00"
+            "time": "2021-10-05T03:18:16+00:00"
         },
         {
             "name": "monolog/monolog",
