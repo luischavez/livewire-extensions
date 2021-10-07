@@ -59,6 +59,6 @@ class Spawner extends Component
      */
     public function render(): mixed
     {
-        return view('livewire-ext::widgets.blade.Spawner');
+        return view('livewire-ext::widgets.blade.spawner');
     }
 }
