@@ -5,6 +5,7 @@ namespace Luischavez\Livewire\Extensions\Widgets;
 use Illuminate\Contracts\View\View;
 use Luischavez\Livewire\Extensions\Callback;
 use Luischavez\Livewire\Extensions\ProxyComponent;
+use Luischavez\Livewire\Extensions\TypeFinder;
 
 /**
  * Smart input widget.
@@ -32,7 +33,7 @@ class SmartInput extends ProxyComponent
     {
         parent::__construct($id);
 
-        $this->proxies = config('livewire-ext.inputs');
+        $this->proxies = TypeFinder::all('inputs');
     }
 
     /**

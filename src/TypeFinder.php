@@ -115,6 +115,21 @@ class TypeFinder
     }
 
     /**
+     * Gets all the classes of the given type.
+     *
+     * @param string $type type
+     * @return array
+     */
+    public static function all(string $type): array
+    {
+        if (empty(static::$cache[$type])) {
+            static::lookup($type);
+        }
+
+        return array_merge(static::$cache[$type], static::$defined[$type]);
+    }
+
+    /**
      * Register a type.
      *
      * @param string $type  type

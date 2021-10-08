@@ -31,19 +31,19 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/livewire-ext.php' => config_path('livewire-ext.php'),
-        ], 'livewire-ext-config');
+        ], ['livewire-ext', 'livewire-ext:config']);
 
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/livewire-ext'),
-        ], 'livewire-ext-views');
+        ], ['livewire-ext', 'livewire-ext:views']);
 
         $this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/livewire-ext'),
-        ], 'livewire-ext-lang');
+        ], ['livewire-ext', 'livewire-ext:lang']);
 
         $this->publishes([
             __DIR__.'/../resources/icons' => resource_path('icons'),
-        ], 'livewire-ext-icons');
+        ], ['livewire-ext', 'livewire-ext:icons']);
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'livewire-ext');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-ext');
