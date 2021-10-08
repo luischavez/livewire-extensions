@@ -21,7 +21,7 @@ abstract class ArrayGridable extends Gridable
     {
         $pages = array_chunk($this->items, $perPage, true);
 
-        $items = $pages[$page] ?? [];
+        $items = $pages[$page - 1] ?? [];
 
         return [
             'items'     => $items,

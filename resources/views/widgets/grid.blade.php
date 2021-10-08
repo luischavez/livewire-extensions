@@ -1,6 +1,6 @@
 <div>
     @foreach ($data['items'] as $key => $item)
-        @livewire($itemComponentName, ['item' => $item], key($key))
+        {!! $this->gridableInstance()->output($key, $item) !!}
     @endforeach
 
     @if ($data['pages'] > 1)

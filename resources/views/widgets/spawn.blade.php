@@ -1,1 +1,1 @@
-@livewire($component, $componentProperties)
+@livewire($component, $componentProperties, key($key ?? null))

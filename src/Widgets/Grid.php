@@ -104,9 +104,7 @@ class Grid extends ExtendedComponent
      */
     public function render(): View
     {
-        return view('livewire-ext::widgets.grid', [
-            'itemComponentName' => $this->gridableInstance()->component(),
-        ]);
+        return view('livewire-ext::widgets.grid');
     }
 
     /**
