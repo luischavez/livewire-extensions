@@ -73,6 +73,13 @@ class ArrayInput extends Input
     public bool $submitted = false;
 
     /**
+     * Input placeholder.
+     * 
+     * @var string|null
+     */
+    public ?string $placeholder = null;
+
+    /**
      * Protected properties.
      * 
      * @var array
