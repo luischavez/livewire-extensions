@@ -2,7 +2,10 @@
 
 namespace Luischavez\Livewire\Extensions\Widgets;
 
+use Illuminate\Contracts\View\View;
 use Luischavez\Livewire\Extensions\ExtendedComponent;
+use Luischavez\Livewire\Extensions\Gridable;
+use Luischavez\Livewire\Extensions\TypeFinder;
 
 /**
  * Grid component.
@@ -10,7 +13,7 @@ use Luischavez\Livewire\Extensions\ExtendedComponent;
 class Grid extends ExtendedComponent
 {
     /**
-     * Item component name
+     * Gridable class name.
      *
      * @var string
      */
@@ -24,6 +27,13 @@ class Grid extends ExtendedComponent
     public array $items = [];
 
     /**
+     * Filters.
+     *
+     * @var array
+     */
+    public array $filters = [];
+
+    /**
      * Protected properties.
      *
      * @var array
@@ -31,7 +41,39 @@ class Grid extends ExtendedComponent
     protected array $protectedProperties = [
         'gridable',
         'items',
+        'filters',
     ];
+
+    /**
+     * Mount.
+     *
+     * @return void
+     */
+    public function mount(): void
+    {
+        /**
+         * @var Gridable
+         */
+        $gridableInstance = TypeFinder::makeOrThrow('grids', $this->gridable);
+        $this->items = $gridableInstance->items();
+    }
+
+    /**
+     * Render.
+     *
+     * @return View
+     */
+    public function render(): View
+    {
+        /**
+         * @var Gridable
+         */
+        $gridableInstance = TypeFinder::makeOrThrow('grids', $this->gridable);
+
+        return view('livewire-ext::widgets.grid', [
+            'itemComponentName' => $gridableInstance->component(),
+        ]);
+    }
 
     /**
      * Run on filter applied.
@@ -42,6 +84,22 @@ class Grid extends ExtendedComponent
      */
     public function onApplyFilter(string $name, mixed $value): void
     {
+        $this->filters[$name] = $value;
 
+        /**
+         * @var Gridable
+         */
+        $gridableInstance = TypeFinder::makeOrThrow('grids', $this->gridable);
+        $gridableInstance->applyFilters($this->filters);
+
+        $this->items = $gridableInstance->items();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getName(): string
+    {
+        return 'widgets-grid';        
     }
 }

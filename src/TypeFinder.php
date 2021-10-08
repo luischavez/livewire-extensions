@@ -4,6 +4,7 @@ namespace Luischavez\Livewire\Extensions;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Luischavez\Livewire\Extensions\Exceptions\TypeFinderException;
 use SplFileInfo;
 
 /**
@@ -112,6 +113,42 @@ class TypeFinder
         }
 
         return static::$cache[$type][$name] ?? null;
+    }
+
+    /**
+     * Make a new intance.
+     *
+     * @param string $type type
+     * @param string $name name
+     * @return object|null
+     */
+    public static function make(string $type, string $name): ?object
+    {
+        $class = static::find($type, $name);
+
+        if ($class === null) {
+            return null;
+        }
+
+        return app()->make($class);
+    }
+
+    /**
+     * Make a new instance or throw an error if not found.
+     *
+     * @param string $type type
+     * @param string $name name
+     * @return object
+     */
+    public static function makeOrThrow(string $type, string $name): object
+    {
+        $instance = static::make($type, $name);
+
+        if ($instance === null) {
+            throw new TypeFinderException("Type not found: $name ($type)");
+        }
+
+        return $instance;
     }
 
     /**

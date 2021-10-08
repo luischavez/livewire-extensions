@@ -31,19 +31,20 @@ abstract class Gridable
     protected abstract function filterParameters(): array;
 
     /**
-     * Apply a filter.
+     * Apply a filters.
      *
-     * @param string    $name   filter name
-     * @param mixed     $value  value
+     * @param array $filter filters
      * @return void
      */
-    public function applyFilter(string $name, mixed $value): void
+    public function applyFilters(array $filters): void
     {
-        $name = Str::studly($name);
-        $filterMethodName = "filterBy$name";
+        foreach ($filters as $filter => $value) {
+            $filter = Str::studly($filter);
+            $filterMethodName = "filterBy$filter";
 
-        if (method_exists($this, $filterMethodName)) {
-            $this->{$filterMethodName}(...$this->filterParameters(), $value);
+            if (method_exists($this, $filterMethodName)) {
+                $this->{$filterMethodName}($value, ...$this->filterParameters());
+            }
         }
     }
 }

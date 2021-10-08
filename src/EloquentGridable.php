@@ -32,11 +32,29 @@ abstract class EloquentGridable extends Gridable
     }
 
     /**
+     * Key name.
+     *
+     * @return string
+     */
+    protected function keyName(): string
+    {
+        return 'id';
+    }
+
+    /**
      * @inheritDoc
      */
     public function items(): array
     {
-        return $this->query->get()->toArray();
+        $results = $this->query->get();
+
+        $items = [];
+
+        foreach ($results as $item) {
+            $items[$item->{$this->keyName()}] = $item;
+        }
+
+        return $items;
     }
 
     /**

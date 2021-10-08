@@ -17,6 +17,7 @@ use Luischavez\Livewire\Extensions\Widgets\Blade\Icon;
 use Luischavez\Livewire\Extensions\Widgets\Blade\Loading;
 use Luischavez\Livewire\Extensions\Widgets\Blade\Spawner;
 use Luischavez\Livewire\Extensions\Widgets\Dialog;
+use Luischavez\Livewire\Extensions\Widgets\Grid;
 use Luischavez\Livewire\Extensions\Widgets\SmartInput;
 
 /**
@@ -58,6 +59,7 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
         Livewire::component(AuthSystem::getName(), AuthSystem::class);
         Livewire::component(Alert::getName(), Alert::class);
         Livewire::component(Dialog::getName(), Dialog::class);
+        Livewire::component(Grid::getName(), Grid::class);
         Livewire::component(SmartInput::getName(), SmartInput::class);
 
         TypeFinder::register('inputs', 'array', ArrayInput::class);
