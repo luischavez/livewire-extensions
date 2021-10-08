@@ -28,7 +28,7 @@
             "src/helpers.php"
         ],
         "psr-4": {
-            "Luischavez\\": "src/Luischavez"
+            "Luischavez\\Livewire\\Extensions\\": "src"
         }
     },
     "autoload-dev": {

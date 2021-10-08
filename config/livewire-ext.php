@@ -28,24 +28,21 @@ return [
     ],
 
     /**
-     * Action configuration.
+     * Path configuration.
      */
-    'actions' => [
-        // Action namespace for autodiscover.
-        'paths' => [
+    'paths' => [
+        'actions'   => [
             app_path('Actions'),
         ],
-    ],
-
-    /**
-     * Input configuration.
-     */
-    'inputs' => [
-        'array'     => Luischavez\Livewire\Extensions\Inputs\ArrayInput::class,
-        'date'      => Luischavez\Livewire\Extensions\Inputs\DateInput::class,
-        'eloquent'  => Luischavez\Livewire\Extensions\Inputs\EloquentInput::class,
-        'int'       => Luischavez\Livewire\Extensions\Inputs\IntInput::class,
-        'string'    => Luischavez\Livewire\Extensions\Inputs\StringInput::class,
+        'grids'     => [
+            app_path('Grids'),
+        ],
+        'inputs'    => [
+            app_path('Inputs'),
+        ],
+        'search'    => [
+            app_path('Search'),
+        ],
     ],
 
     /**

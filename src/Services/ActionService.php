@@ -2,97 +2,19 @@
 
 namespace Luischavez\Livewire\Extensions\Services;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Luischavez\Livewire\Extensions\Action;
 use Luischavez\Livewire\Extensions\Exceptions\ActionException;
 use Luischavez\Livewire\Extensions\Reflection\Inspector;
 use Luischavez\Livewire\Extensions\Reflection\InspectorQuery;
 use Luischavez\Livewire\Extensions\Reflection\Method;
-use SplFileInfo;
+use Luischavez\Livewire\Extensions\TypeFinder;
 
 /**
  * Action service
  */
 class ActionService extends LivewireService
 {
-    /**
-     * Defined actions.
-     *
-     * @var array
-     */
-    protected static array $actions = [];
-
-    /**
-     * Search actions.
-     *
-     * @return void
-     */
-    protected function lookup(): void
-    {
-        if (!empty(self::$actions)) {
-            return;
-        }
-
-        $actionPaths = config('livewire-ext.actions.paths', []);
-
-        foreach ($actionPaths as $path) {
-            if (!File::exists($path)) {
-                continue;
-            }
-
-            $actions = collect(File::allFiles($path))
-                ->map(function (SplFileInfo $file) use ($path) {
-                    $appPath = app_path();
-                    $actionPath = $path;
-
-                    $simpleName = Str::of($file->getFilename())
-                        ->after($actionPath.'/')
-                        ->replace(['/', '.php'], ['\\', ''])
-                        ->__toString();
-                    $fullName = Str::of($file->getPathname())
-                        ->after($appPath.'/')
-                        ->replace(['/', '.php'], ['\\', ''])
-                        ->__toString();
-                    $parent = Str::of($file->getPathname())
-                        ->after($actionPath.'/')
-                        ->before('/'.$simpleName)
-                        ->replace(['/', '.php', '\\'], ['.', '', '.'])
-                        ->__toString();
-
-                    $parent = explode('.', $parent);
-                    $parent = array_map(function ($string) {
-                        return Str::camel($string);
-                    }, $parent);
-                    $parent = implode('.', $parent);
-
-                    $name = Str::camel($simpleName);
-
-                    if ($parent == $name) {
-                        $parent = '';
-                    }
-                    
-                    if (!empty($parent)) {
-                        $name = $parent.'.'.$name;
-                    }
-
-                    $class = app()->getNamespace().$fullName;
-
-                    return [
-                        'class' => $class,
-                        'name'  => $name,
-                    ];
-                })
-                ->keyBy('name')
-                ->map(function($action) {
-                    return $action['class'];
-                })
-                ->toArray();
-
-            self::$actions = array_merge(self::$actions, $actions);
-        }
-    }
-
     /**
      * Gets an action.
      *
@@ -103,7 +25,7 @@ class ActionService extends LivewireService
      */
     public function getAction(string $actionName): ?Action
     {
-        $actionClass = self::$actions[$actionName] ?? null;
+        $actionClass = TypeFinder::find('actions', $actionName);
 
         if (!$actionClass) {
             return null;
@@ -222,13 +144,5 @@ class ActionService extends LivewireService
         }
 
         return $result;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function initialize(): void
-    {
-        $this->lookup();
     }
 }

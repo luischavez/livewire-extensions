@@ -4,7 +4,12 @@ namespace Luischavez\Livewire\Extensions;
 
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Luischavez\Livewire\Extensions\Commands\IconifyCommand;
+use Luischavez\Livewire\Extensions\Commands\Iconify;
+use Luischavez\Livewire\Extensions\Inputs\ArrayInput;
+use Luischavez\Livewire\Extensions\Inputs\DateInput;
+use Luischavez\Livewire\Extensions\Inputs\EloquentInput;
+use Luischavez\Livewire\Extensions\Inputs\IntInput;
+use Luischavez\Livewire\Extensions\Inputs\StringInput;
 use Luischavez\Livewire\Extensions\Widgets\Alert;
 use Luischavez\Livewire\Extensions\Widgets\AuthSystem;
 use Luischavez\Livewire\Extensions\Widgets\Blade\Button;
@@ -25,23 +30,23 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../../../../config/livewire-ext.php' => config_path('livewire-ext.php'),
+            __DIR__.'/../config/livewire-ext.php' => config_path('livewire-ext.php'),
         ], 'livewire-ext-config');
 
         $this->publishes([
-            __DIR__.'/../../../../resources/views' => resource_path('views/vendor/livewire-ext'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/livewire-ext'),
         ], 'livewire-ext-views');
 
         $this->publishes([
-            __DIR__.'/../../../../resources/lang' => resource_path('lang/vendor/livewire-ext'),
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/livewire-ext'),
         ], 'livewire-ext-lang');
 
         $this->publishes([
-            __DIR__.'/../../../../resources/icons' => resource_path('icons'),
+            __DIR__.'/../resources/icons' => resource_path('icons'),
         ], 'livewire-ext-icons');
 
-        $this->loadTranslationsFrom(__DIR__.'/../../../../resources/lang', 'livewire-ext');
-        $this->loadViewsFrom(__DIR__.'/../../../../resources/views', 'livewire-ext');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'livewire-ext');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-ext');
 
         $this->loadViewComponentsAs('widgets', [
             Button::class,
@@ -55,9 +60,15 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
         Livewire::component(Dialog::getName(), Dialog::class);
         Livewire::component(SmartInput::getName(), SmartInput::class);
 
+        TypeFinder::register('inputs', 'array', ArrayInput::class);
+        TypeFinder::register('inputs', 'date', DateInput::class);
+        TypeFinder::register('inputs', 'eloquent', EloquentInput::class);
+        TypeFinder::register('inputs', 'int', IntInput::class);
+        TypeFinder::register('inputs', 'string', StringInput::class);
+
         if ($this->app->runningInConsole()) {
             $this->commands([
-                IconifyCommand::class,
+                Iconify::class,
             ]);
         }
     }
@@ -68,7 +79,7 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../../../../config/livewire-ext.php', 'livewire-ext',
+            __DIR__.'/../config/livewire-ext.php', 'livewire-ext',
         );
     }
 }

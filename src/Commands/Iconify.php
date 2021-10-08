@@ -5,7 +5,7 @@ namespace Luischavez\Livewire\Extensions\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-class IconifyCommand extends Command
+class Iconify extends Command
 {
     /**
      * The name and signature of the console command.
