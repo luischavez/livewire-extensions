@@ -17,9 +17,19 @@ abstract class ArrayGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function items(): array
+    public function items(int $page = 1, int $perPage = 10): array
     {
-        return $this->items;
+        $pages = array_chunk($this->items, $perPage, true);
+
+        $items = $pages[$page] ?? [];
+
+        return [
+            'items'     => $items,
+            'page'      => $page,
+            'pages'     => count($pages),
+            'perPage'   => $perPage,
+            'total'     => count($items),
+        ];
     }
 
     /**

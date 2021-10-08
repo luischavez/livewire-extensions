@@ -44,9 +44,9 @@ abstract class EloquentGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function items(): array
+    public function items(int $page = 1, int $perPage = 10): array
     {
-        $results = $this->query->get();
+        $results = $this->query->paginate($perPage, ['*'], null, $page);
 
         $items = [];
 
@@ -54,7 +54,13 @@ abstract class EloquentGridable extends Gridable
             $items[$item->{$this->keyName()}] = $item;
         }
 
-        return $items;
+        return [
+            'items'     => $items,
+            'page'      => $page,
+            'pages'     => $results->lastPage(),
+            'perPage'   => $perPage,
+            'total'     => $results->total(),
+        ];
     }
 
     /**

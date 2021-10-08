@@ -12,9 +12,11 @@ abstract class Gridable
     /**
      * Gets the items.
      *
+     * @param int $page     current page
+     * @param int $perPage  items per page
      * @return array
      */
-    public abstract function items(): array;
+    public abstract function items(int $page = 1, int $perPage = 10): array;
 
     /**
      * Gets the component name.
