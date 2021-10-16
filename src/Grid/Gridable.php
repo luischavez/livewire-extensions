@@ -78,6 +78,16 @@ abstract class Gridable
     }
 
     /**
+     * Gets the item name.
+     *
+     * @return string
+     */
+    public function itemName(): string
+    {
+        return 'item';
+    }
+
+    /**
      * Gets the view properties.
      *
      * @param mixed $item item
@@ -105,7 +115,7 @@ abstract class Gridable
             $content = $content
                 ->with($this->properties($item))
                 ->with('key', $key)
-                ->with('item', $item)
+                ->with($this->itemName(), $item)
                 ->render();
         } else {
             $content = strval($content);
@@ -114,7 +124,7 @@ abstract class Gridable
                 Livewire::getClass($content);
 
                 $properties = $this->properties($item);
-                $properties['item'] = $item;
+                $properties[$this->itemName()] = $item;
 
                 $content = view('livewire-ext::widgets.spawn', [
                     'component'             => $content,
