@@ -15,11 +15,12 @@ abstract class Gridable
     /**
      * Gets the grid data.
      *
-     * @param int $page     current page
-     * @param int $perPage  items per page
+     * @param bool  $paginate   paginate results
+     * @param int   $perPage    items per page
+     * @param int   $page       current page
      * @return GridData
      */
-    public abstract function data(int $page = 1, int $perPage = 10): GridData;
+    public abstract function data(bool $paginate = true, int $perPage = 10, int $page = 1): GridData;
 
     /**
      * Render the grid.

@@ -17,13 +17,23 @@ abstract class ArrayGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function data(int $page = 1, int $perPage = 10): GridData
+    public function data(bool $paginate = true, int $perPage = 10, int $page = 1): GridData
     {
-        $pages = array_chunk($this->items, $perPage, true);
+        if ($paginate) {
+            $pages = array_chunk($this->items, $perPage, true);
 
-        $items = $pages[$page - 1] ?? [];
+            $items = $pages[$page - 1] ?? [];   
+            $lastPage = count($pages);
+            $total = count($this->items);
+        } else {
+            $items = array_slice($this->items, 0, $perPage, true);
 
-        return new GridData($items, $page, count($pages), $perPage, count($items));
+            $page = 1;
+            $lastPage = 1;
+            $total = count($items);
+        }
+
+        return new GridData($items, $page, $lastPage, $perPage, $total);
     }
 
     /**

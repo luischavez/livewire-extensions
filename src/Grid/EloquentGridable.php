@@ -35,12 +35,9 @@ abstract class EloquentGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function data(int $page = 1, int $perPage = 10): GridData
+    public function data(bool $paginate = true, int $perPage = 10, int $page = 1): GridData
     {
-        $usePaginator = empty($this->query->getQuery()->limit)
-            && empty($this->query->getQuery()->offset);
-        
-        if ($usePaginator) {
+        if ($paginate) {
             $paginator = $this->query->paginate($perPage, ['*'], null, $page);
 
             $lastPage = $paginator->lastPage();
@@ -49,6 +46,7 @@ abstract class EloquentGridable extends Gridable
         } else {
             $items = $this->query->get();
 
+            $page = 1;
             $lastPage = 1;
             $total = $items->count();
         }

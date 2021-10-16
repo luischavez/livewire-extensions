@@ -62,6 +62,13 @@ class Grid extends ExtendedComponent
     public int $total = 0;
 
     /**
+     * Paginate results.
+     *
+     * @var boolean
+     */
+    public bool $paginate = true;
+
+    /**
      * Justify.
      *
      * @var string
