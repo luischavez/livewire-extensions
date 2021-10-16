@@ -3,6 +3,7 @@
 namespace Luischavez\Livewire\Extensions\Grid;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Eloquent gridable.
@@ -49,6 +50,14 @@ abstract class EloquentGridable extends Gridable
     public function key(mixed $item): mixed
     {
         return $item->id;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function itemName(): string
+    {
+        return Str::camel(class_basename($this->model));
     }
 
     /**
