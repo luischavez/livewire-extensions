@@ -151,7 +151,7 @@ class Grid extends ExtendedComponent
     protected function refreshGridableData(): void
     {
         $this->gridableInstance()->applyFilters($this->filters);
-        $data = $this->gridableInstance()->data($this->page, $this->perPage + $this->additionalPerPage);
+        $data = $this->gridableInstance()->data($this->paginate, $this->perPage + $this->additionalPerPage, $this->page);
 
         $this->items = $data->items;
         $this->pages = $data->pages;
