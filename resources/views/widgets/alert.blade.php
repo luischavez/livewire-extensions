@@ -107,8 +107,7 @@
 
         <div class="flex justify-end px-2 py-1 space-x-2 text-xs">
             @if ($showCancelButton)
-                <button x-on:click="cancel"
-                    class="text-black">
+                <button x-on:click="cancel" class="text-black">
                     {{ $cancelText ?? __('livewire-ext::alert.cancel') }}
                 </button>
             @endif
@@ -122,7 +121,7 @@
                         'text-blue-500'   : type == 'info',
                     }"
                     class="font-bold"
-                    :disabled="$inputName && in_array('required', $inputOptions['rules'] ?? []) && empty($inputValue)">
+                    {{ $inputName && in_array('required', $inputOptions['rules'] ?? []) && empty($inputValue) ? 'disabled' : '' }}>
                     {{ $confirmText ?? __('livewire-ext::alert.confirm') }}
                 </button>
             @endif
