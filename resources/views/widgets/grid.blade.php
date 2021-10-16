@@ -1,4 +1,6 @@
-<div>
+<div class="relative w-full">
+    <x-widgets-loading wire:loading.delay />
+
     <div
         x-data="{
             width: 0,
