@@ -44,7 +44,7 @@ abstract class EloquentGridable extends Gridable
             $total = $paginator->total();
             $items = $paginator->getCollection();   
         } else {
-            $items = $this->query->get();
+            $items = $this->query->take($perPage)->get();
 
             $page = 1;
             $lastPage = 1;
