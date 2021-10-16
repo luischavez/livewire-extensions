@@ -35,12 +35,4 @@ abstract class ArrayGridable extends Gridable
 
         return new GridData($items, $page, $lastPage, $perPage, $total);
     }
-
-    /**
-     * @inheritDoc
-     */
-    protected function filterParameters(): array
-    {
-        return [$this->items];
-    }
 }

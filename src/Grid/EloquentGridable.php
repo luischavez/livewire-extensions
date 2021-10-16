@@ -65,16 +65,8 @@ abstract class EloquentGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function itemName(): string
+    public function itemName(mixed $item): string
     {
         return Str::camel(class_basename($this->model));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function filterParameters(): array
-    {
-        return [$this->query];
     }
 }

@@ -32,11 +32,37 @@ abstract class Gridable
     public abstract function render(mixed $item): mixed;
 
     /**
-     * Gets the primary filter parameters.
+     * Gets the item key.
      *
+     * @param mixed $item item
+     * @return mixed
+     */
+    public function key(mixed $item): mixed
+    {
+        return null;
+    }
+
+    /**
+     * Gets the item name.
+     *
+     * @param mixed $item item
+     * @return string
+     */
+    public function itemName(mixed $item): string
+    {
+        return 'item';
+    }
+
+    /**
+     * Gets the item properties.
+     *
+     * @param mixed $item
      * @return array
      */
-    protected abstract function filterParameters(): array;
+    public function properties(mixed $item): array
+    {
+        return [];
+    }
 
     /**
      * Apply a filters.
@@ -51,52 +77,9 @@ abstract class Gridable
             $filterMethodName = "filterBy$filter";
 
             if (method_exists($this, $filterMethodName)) {
-                $this->{$filterMethodName}($value, ...$this->filterParameters());
+                $this->{$filterMethodName}($value);
             }
         }
-    }
-
-    /**
-     * Gets the item key.
-     *
-     * @param mixed $item item
-     * @return mixed
-     */
-    public function key(mixed $item): mixed
-    {
-        return null;
-    }
-
-    /**
-     * Transform the item before send to view.
-     *
-     * @param mixed $item item
-     * @return mixed
-     */
-    public function transform(mixed $item): mixed
-    {
-        return $item;
-    }
-
-    /**
-     * Gets the item name.
-     *
-     * @return string
-     */
-    public function itemName(): string
-    {
-        return 'item';
-    }
-
-    /**
-     * Gets the view properties.
-     *
-     * @param mixed $item item
-     * @return array
-     */
-    public function properties(mixed $item): array
-    {
-        return [];
     }
 
     /**
@@ -108,24 +91,23 @@ abstract class Gridable
     public function output(mixed $item): string
     {
         $key = $this->key($item);
+        $name = $this->itemName($item);
+        $properties = $this->properties($item);
 
-        $item = $this->transform($item);
-        $content = $this->render($key, $item);
+        $properties[$name] = $item;
+
+        $content = $this->render($item);
 
         if ($content instanceof View) {
             $content = $content
-                ->with($this->properties($item))
+                ->with($properties)
                 ->with('key', $key)
-                ->with($this->itemName(), $item)
                 ->render();
         } else {
             $content = strval($content);
 
             try {
                 Livewire::getClass($content);
-
-                $properties = $this->properties($item);
-                $properties[$this->itemName()] = $item;
 
                 $content = view('livewire-ext::widgets.spawn', [
                     'component'             => $content,
