@@ -25,13 +25,6 @@ abstract class Action extends Caller
     protected Component $component;
 
     /**
-     * Action name.
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
      * Action parameters.
      *
      * @var array
@@ -56,13 +49,11 @@ abstract class Action extends Caller
      * Constructor.
      *
      * @param Component $component  component
-     * @param string    $name       action name
      * @param array     $parameters parameters
      */
-    public function __construct(Component $component, string $name, array $parameters = [])
+    public function __construct(Component $component, array $parameters = [])
     {
         $this->component = $component;
-        $this->name = $name;
         $this->parameters = $parameters;
     }
 
@@ -87,7 +78,7 @@ abstract class Action extends Caller
      */
     public function name(): string
     {
-        return $this->name;
+        return TypeFinder::name('actions', static::class);
     }
     
     /**

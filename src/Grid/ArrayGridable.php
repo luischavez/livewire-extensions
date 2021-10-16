@@ -1,6 +1,6 @@
 <?php
 
-namespace Luischavez\Livewire\Extensions;
+namespace Luischavez\Livewire\Extensions\Grid;
 
 /**
  * Array gridable.
@@ -17,19 +17,13 @@ abstract class ArrayGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function items(int $page = 1, int $perPage = 10): array
+    public function data(int $page = 1, int $perPage = 10): GridData
     {
         $pages = array_chunk($this->items, $perPage, true);
 
         $items = $pages[$page - 1] ?? [];
 
-        return [
-            'items'     => $items,
-            'page'      => $page,
-            'pages'     => count($pages),
-            'perPage'   => $perPage,
-            'total'     => count($items),
-        ];
+        return new GridData($items, $page, count($pages), $perPage, count($items));
     }
 
     /**

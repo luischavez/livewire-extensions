@@ -34,7 +34,7 @@ class AlertService extends LivewireService
         /**
          * @var SpawnService
          */
-        $spawnService = SpawnService::of($this->component);
+        $spawnService = SpawnService::of($this->component, true);
         $spawnService->spawn($spawner, $alert);
     }
 }

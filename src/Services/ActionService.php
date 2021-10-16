@@ -35,7 +35,7 @@ class ActionService extends LivewireService
             throw new ActionException("$actionName is not an action");
         }
 
-        return app()->make($actionClass, ['component' => $this->component, 'name' => $actionName]);
+        return app()->make($actionClass, ['component' => $this->component]);
     }
 
     /**

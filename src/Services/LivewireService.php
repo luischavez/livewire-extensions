@@ -2,6 +2,7 @@
 
 namespace Luischavez\Livewire\Extensions\Services;
 
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Luischavez\Livewire\Extensions\Reflection\Inspector;
 use Luischavez\Livewire\Extensions\Reflection\Property;
@@ -30,11 +31,19 @@ abstract class LivewireService
     }
 
     /**
-     * Run on component initialized.
+     * Run on initialized.
      *
      * @return void
      */
     public function initialize(): void
+    {}
+
+    /**
+     * Run on component boot.
+     *
+     * @return void
+     */
+    public function boot(): void
     {}
 
     /**
@@ -54,21 +63,11 @@ abstract class LivewireService
     {}
 
     /**
-     * Run when all services mounted and hydated.
+     * Run when all services are mounted and hydrated.
      *
      * @return void
      */
     public function ready(): void
-    {
-
-    }
-
-    /**
-     * Run on component dehydrate.
-     *
-     * @return void
-     */
-    public function dehydrate(): void
     {}
 
     /**
@@ -89,6 +88,31 @@ abstract class LivewireService
      * @return void
      */
     public function updated(string $key, mixed $value): void
+    {}
+
+    /**
+     * Run on component rendering.
+     *
+     * @return void
+     */
+    public function rendering(): void
+    {}
+
+    /**
+     * Run on component rendered.
+     *
+     * @param View $view view
+     * @return void
+     */
+    public function rendered(View $view): void
+    {}
+
+    /**
+     * Run on component dehydrate.
+     *
+     * @return void
+     */
+    public function dehydrate(): void
     {}
 
     /**

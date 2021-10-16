@@ -96,6 +96,34 @@ class TypeFinder
     }
 
     /**
+     * Get the name of the registered type.
+     *
+     * @param string $type  type name
+     * @param string $class class name
+     * @return string|null
+     */
+    public static function name(string $type, string $class): ?string
+    {
+        foreach (static::$defined[$type] ?? [] as $name => $defined) {
+            if ($defined == $class) {
+                return $name;
+            }
+        }
+
+        if (empty(static::$cache[$type])) {
+            static::lookup($type);
+        }
+
+        foreach (static::$cache[$type] ?? [] as $name => $cache) {
+            if ($cache == $class) {
+                return $name;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Find a class of the requested type and name.
      *
      * @param string    $type   type

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Luischavez\Livewire\Extensions\Exceptions\AlertException;
+use Luischavez\Livewire\Extensions\Services\AlertService;
 use Luischavez\Livewire\Extensions\Traits\WithActions;
 use Luischavez\Livewire\Extensions\Traits\WithAlerts;
 use Luischavez\Livewire\Extensions\Traits\WithCallbacks;
@@ -71,7 +72,12 @@ class ExtendedComponent extends Component
                 ? $ex->__toString()
                 : trans('livewire-ext::alert.throw.message');
 
-            $alerts[] = $this->alert($title, $message)
+            /**
+             * @var AlertService
+             */
+            $alertService = AlertService::of($this, true);
+
+            $alerts[] = $alertService->alert($title, $message)
                 ->type(Alert::DANGER);
         }
 

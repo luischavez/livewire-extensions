@@ -2,6 +2,7 @@
 
 namespace Luischavez\Livewire\Extensions\Traits;
 
+use Illuminate\Contracts\View\View;
 use Luischavez\Livewire\Extensions\Reflection\Inspector;
 use Luischavez\Livewire\Extensions\Reflection\Property;
 use Luischavez\Livewire\Extensions\Services\LivewireService;
@@ -29,6 +30,8 @@ trait WithServices
             ->property()
             ->withType(LivewireService::class)
             ->all();
+
+        $this->livewireServices = [];
 
         /**
          * @var Property
@@ -79,6 +82,21 @@ trait WithServices
     }
 
     /**
+     * Boot services.
+     *
+     * @return void
+     */
+    public function bootWithServices(): void
+    {
+        /**
+         * @var LivewireService
+         */
+        foreach ($this->livewireServices as $service) {
+            $service->boot();
+        }
+    }
+
+    /**
      * Mount services.
      *
      * @return void
@@ -104,8 +122,6 @@ trait WithServices
          * @var LivewireService
          */
         foreach ($this->livewireServices as $service) {
-            // Running here because on livewire trait mount ran after hydrate.
-            //$service->mount();
             $service->hydrate();
         }
 
@@ -114,21 +130,6 @@ trait WithServices
          */
         foreach ($this->livewireServices as $service) {
             $service->ready();
-        }
-    }
-
-    /**
-     * Dehydarte services.
-     *
-     * @return void
-     */
-    public function dehydrateWithServices(): void
-    {
-        /**
-         * @var LivewireService
-         */
-        foreach ($this->livewireServices as $service) {
-            $service->dehydrate();
         }
     }
 
@@ -163,6 +164,52 @@ trait WithServices
          */
         foreach ($this->livewireServices as $service) {
             $service->updated($name, $value);
+        }
+    }
+
+    /**
+     * Run on component rendering.
+     *
+     * @return void
+     */
+    public function renderingWithServices(): void
+    {
+        /**
+         * @var LivewireService
+         */
+        foreach ($this->livewireServices as $service) {
+            $service->rendering();
+        }
+    }
+
+    /**
+     * Run on component rendered.
+     *
+     * @param View $view view
+     * @return void
+     */
+    public function renderedWithServices(View $view): void
+    {
+        /**
+         * @var LivewireService
+         */
+        foreach ($this->livewireServices as $service) {
+            $service->rendered($view);
+        }
+    }
+
+    /**
+     * Dehydarte services.
+     *
+     * @return void
+     */
+    public function dehydrateWithServices(): void
+    {
+        /**
+         * @var LivewireService
+         */
+        foreach ($this->livewireServices as $service) {
+            $service->dehydrate();
         }
     }
 }

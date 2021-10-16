@@ -1,6 +1,6 @@
 <?php
 
-namespace Luischavez\Livewire\Extensions;
+namespace Luischavez\Livewire\Extensions\Grid;
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -32,35 +32,23 @@ abstract class EloquentGridable extends Gridable
     }
 
     /**
-     * Key name.
-     *
-     * @return string
+     * @inheritDoc
      */
-    protected function keyName(): string
+    public function data(int $page = 1, int $perPage = 10): GridData
     {
-        return 'id';
+        $paginator = $this->query->paginate($perPage, ['*'], null, $page);
+
+        $items = $paginator->getCollection();
+
+        return new GridData($items, $page, $paginator->lastPage(), $perPage, $paginator->total());
     }
 
     /**
      * @inheritDoc
      */
-    public function items(int $page = 1, int $perPage = 10): array
+    public function key(mixed $item): mixed
     {
-        $results = $this->query->paginate($perPage, ['*'], null, $page);
-
-        $items = [];
-
-        foreach ($results as $item) {
-            $items[$item->{$this->keyName()}] = $item;
-        }
-
-        return [
-            'items'     => $items,
-            'page'      => $page,
-            'pages'     => $results->lastPage(),
-            'perPage'   => $perPage,
-            'total'     => $results->total(),
-        ];
+        return $item->id;
     }
 
     /**
