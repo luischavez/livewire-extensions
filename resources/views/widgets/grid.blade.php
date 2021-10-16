@@ -50,10 +50,6 @@
         @endforeach
     </div>
 
-    <div>
-        {{ $page }} of {{ $pages }}
-    </div>
-
     @if ($pages > 1)
         <div class="flex items-center justify-center my-5 space-x-1 text-sm">
             @if ($page > 1)
