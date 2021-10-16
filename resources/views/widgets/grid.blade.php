@@ -41,7 +41,7 @@
             gridResizeObserver = new ResizeObserver((entries) => onGridResize(entries[0]));
             gridResizeObserver.observe($el);
         "
-        :style="`display: grid; grid-column-gap: {{ $gap }}px; grid-template-columns: repeat(auto-fit, ${itemWidth}px);`"
+        :style="`display: grid; justify-content: {{ $justify }}; grid-column-gap: {{ $gap }}px; grid-template-columns: repeat(auto-fit, ${itemWidth}px);`"
     >
         @foreach ($items as $item)
             <div class="max-w-max min-w-min">

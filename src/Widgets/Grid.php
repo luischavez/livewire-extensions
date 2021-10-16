@@ -62,6 +62,13 @@ class Grid extends ExtendedComponent
     public int $total = 0;
 
     /**
+     * Justify.
+     *
+     * @var string
+     */
+    public string $justify = 'center';
+
+    /**
      * Gap between items.
      *
      * @var float
