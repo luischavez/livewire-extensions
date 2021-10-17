@@ -13,6 +13,13 @@ use Livewire\Livewire;
 abstract class Gridable
 {
     /**
+     * Applied filters.
+     *
+     * @var array
+     */
+    protected array $filters = [];
+
+    /**
      * Gets the grid data.
      *
      * @param bool  $paginate   paginate results
@@ -65,12 +72,12 @@ abstract class Gridable
     }
 
     /**
-     * Apply a filters.
+     * Filter results.
      *
-     * @param array $filter filters
+     * @param array $filters filters
      * @return void
      */
-    public function applyFilters(array $filters): void
+    public function filter(array $filters): void
     {
         foreach ($filters as $filter => $value) {
             $filter = Str::studly($filter);
@@ -80,6 +87,18 @@ abstract class Gridable
                 $this->{$filterMethodName}($value);
             }
         }
+    }
+
+    /**
+     * Apply a filters.
+     *
+     * @param array $filter filters
+     * @return void
+     */
+    public function applyFilters(array $filters): void
+    {
+        $this->filters = $filters;
+        $this->filter($filters);
     }
 
     /**
