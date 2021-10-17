@@ -9,6 +9,14 @@
             gridResizeObserver: null,
             resizer: null,
 
+            getFirstItemWidth() {
+                let item = $el.firstElementChild;
+
+                if (typeof item !== 'undefined' && item !== null) {
+                    this.itemWidth = item.getClientRects()[0].width;
+                }
+            },
+
             handleResize(newWidth) {
                 if (this.width == newWidth) {
                     return;
@@ -21,12 +29,7 @@
                 }
 
                 this.resizer = setTimeout(() => {
-                    let item = $el.firstElementChild;
-
-                    if (typeof item !== 'undefined' && item !== null) {
-                        this.itemWidth = item.getClientRects()[0].width;
-                    }
-
+                    this.getFirstItemWidth();
                     $wire.fillGrid(this.width, this.itemWidth);
                 }, 500);
             },
@@ -40,15 +43,13 @@
             }
         }"
         x-init="
+            getFirstItemWidth();
+
             gridResizeObserver = new ResizeObserver((entries) => onGridResize(entries[0]));
             gridResizeObserver.observe($el);
 
             $el.addEventListener('DOMNodeInserted', (event) => {
-                item = $el.firstElementChild;
-
-                if (typeof item !== 'undefined' && item !== null) {
-                    itemWidth = item.getClientRects()[0].width;
-                }
+                getFirstItemWidth();
             }, false);
         "
         :style="`display: grid; justify-content: {{ $justify }}; grid-column-gap: {{ $gap }}px; grid-template-columns: repeat(auto-fit, ${itemWidth}px);`"
