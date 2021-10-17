@@ -40,14 +40,16 @@
             }
         }"
         x-init="
-            item = $el.firstElementChild;
-
-            if (typeof item !== 'undefined' && item !== null) {
-                itemWidth = item.getClientRects()[0].width;
-            }
-
             gridResizeObserver = new ResizeObserver((entries) => onGridResize(entries[0]));
             gridResizeObserver.observe($el);
+
+            $el.addEventListener('DOMNodeInserted', (event) => {
+                item = $el.firstElementChild;
+
+                if (typeof item !== 'undefined' && item !== null) {
+                    itemWidth = item.getClientRects()[0].width;
+                }
+            }, false);
         "
         :style="`display: grid; justify-content: {{ $justify }}; grid-column-gap: {{ $gap }}px; grid-template-columns: repeat(auto-fit, ${itemWidth}px);`"
     >
