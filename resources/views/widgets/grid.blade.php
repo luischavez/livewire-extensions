@@ -40,7 +40,11 @@
             }
         }"
         x-init="
-            itemWidth = $el.firstElementChild.getClientRects()[0].width;
+            let item = $el.firstElementChild;
+
+            if (typeof item !== 'undefined' && item !== null) {
+                itemWidth = item.getClientRects()[0].width;
+            }
 
             gridResizeObserver = new ResizeObserver((entries) => onGridResize(entries[0]));
             gridResizeObserver.observe($el);
