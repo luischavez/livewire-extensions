@@ -62,6 +62,13 @@ class Grid extends ExtendedComponent
     public int $total = 0;
 
     /**
+     * Fix length to fit the container.
+     *
+     * @var boolean
+     */
+    public bool $fixLength = true;
+
+    /**
      * Paginate results.
      *
      * @var boolean
@@ -217,6 +224,10 @@ class Grid extends ExtendedComponent
      */
     public function fillGrid(float $gridWidth, float $itemWidth): void
     {
+        if (!$this->fixLength) {
+            return;
+        }
+
         $gridWidth += $this->gap;
         $itemWidth += $this->gap;
 
