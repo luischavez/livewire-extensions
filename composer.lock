@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4e8ec1588aa5ad360a169fdcba4d587",
+    "content-hash": "8efdd59a058d8551f8147d47749b0e74",
     "packages": [
         {
             "name": "brick/math",
@@ -1081,16 +1081,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "dev-master",
+            "version": "dev-octane",
             "source": {
                 "type": "git",
-                "url": "https://github.com/livewire/livewire.git",
-                "reference": "6ee7e219f2d568b57a657398f59a19ff17f91d29"
+                "url": "https://github.com/luischavez/livewire.git",
+                "reference": "f5f3e001bd2ee10982d178f9d814fa46b0438747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/6ee7e219f2d568b57a657398f59a19ff17f91d29",
-                "reference": "6ee7e219f2d568b57a657398f59a19ff17f91d29",
+                "url": "https://api.github.com/repos/luischavez/livewire/zipball/f5f3e001bd2ee10982d178f9d814fa46b0438747",
+                "reference": "f5f3e001bd2ee10982d178f9d814fa46b0438747",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1109,6 @@
                 "phpunit/phpunit": "^8.4|^9.0",
                 "psy/psysh": "@stable"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1129,7 +1128,12 @@
                     "Livewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "App\\": "vendor/orchestra/testbench-core/laravel/app",
+                    "Tests\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -1141,16 +1145,15 @@
             ],
             "description": "A front-end framework for Laravel.",
             "support": {
-                "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/master"
+                "source": "https://github.com/luischavez/livewire/tree/octane"
             },
             "funding": [
                 {
-                    "url": "https://github.com/calebporzio",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/calebporzio"
                 }
             ],
-            "time": "2021-10-17T02:43:39+00:00"
+            "time": "2021-10-05T03:18:16+00:00"
         },
         {
             "name": "monolog/monolog",
