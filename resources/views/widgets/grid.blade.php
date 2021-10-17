@@ -40,7 +40,7 @@
             }
         }"
         x-init="
-            let item = $el.firstElementChild;
+            item = $el.firstElementChild;
 
             if (typeof item !== 'undefined' && item !== null) {
                 itemWidth = item.getClientRects()[0].width;
