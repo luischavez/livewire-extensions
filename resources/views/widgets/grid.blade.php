@@ -23,7 +23,7 @@
                 this.resizer = setTimeout(() => {
                     let item = $el.firstElementChild;
 
-                    if (typeof item !== 'undefined') {
+                    if (typeof item !== 'undefined' && item !== null) {
                         this.itemWidth = item.getClientRects()[0].width;
                     }
 
