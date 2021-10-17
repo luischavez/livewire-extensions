@@ -21,7 +21,11 @@
                 }
 
                 this.resizer = setTimeout(() => {
-                    this.itemWidth = $el.firstElementChild.getClientRects()[0].width;
+                    let item = $el.firstElementChild;
+
+                    if (typeof item !== 'undefined') {
+                        this.itemWidth = item.getClientRects()[0].width;
+                    }
 
                     $wire.fillGrid(this.width, this.itemWidth);
                 }, 500);
