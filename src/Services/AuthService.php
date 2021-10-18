@@ -134,16 +134,10 @@ class AuthService extends LivewireService
      */
     public function mount(): void
     {
-        $userData = $this->component->getUserData();
-
         if (auth()->check()) {
-            if (empty($userData)) {
-                $this->component->onUserLogged();
-            }
+            $this->component->onUserLogged();
         } else {
-            if (!empty($userData)) {
-                $this->component->onUserLogout();
-            }
+            $this->component->onUserLogout();
         }
     }
 }
