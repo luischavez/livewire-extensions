@@ -114,7 +114,7 @@ trait WithAuth
      */
     public function onUserLogged(): void
     {
-        if (auth()->check() && empty($this->userData)) {
+        if (auth()->check()) {
             $this->userData = $this->authService->filterUserData(
                 auth()->user(),
                 $this->hiddenUserData,
@@ -130,7 +130,7 @@ trait WithAuth
      */
     public function onUserLogout(): void
     {
-        if (!auth()->check() && !empty($this->userData)) {
+        if (!auth()->check()) {
             $this->userData = [];
             $this->handleAuthStatusChanged(null);
         }
