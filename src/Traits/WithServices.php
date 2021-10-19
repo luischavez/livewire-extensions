@@ -124,12 +124,20 @@ trait WithServices
         foreach ($this->livewireServices as $service) {
             $service->hydrate();
         }
+    }
 
+    /**
+     * Run on component booted.
+     *
+     * @return void
+     */
+    public function bootedWithServices(): void
+    {
         /**
          * @var LivewireService
          */
         foreach ($this->livewireServices as $service) {
-            $service->ready();
+            $service->booted();
         }
     }
 

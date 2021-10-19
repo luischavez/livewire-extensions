@@ -67,7 +67,7 @@ abstract class LivewireService
      *
      * @return void
      */
-    public function ready(): void
+    public function booted(): void
     {}
 
     /**
