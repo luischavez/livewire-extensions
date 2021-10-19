@@ -47,19 +47,19 @@ abstract class LivewireService
     {}
 
     /**
-     * Run on component mount.
-     *
-     * @return void
-     */
-    public function mount(): void
-    {}
-
-    /**
      * Run on component hydrate.
      *
      * @return void
      */
     public function hydrate(): void
+    {}
+
+    /**
+     * Run on component mount.
+     *
+     * @return void
+     */
+    public function mount(): void
     {}
 
     /**

@@ -75,7 +75,7 @@ class ListenerService extends LivewireService
     /**
      * @inheritDoc
      */
-    public function booted(): void
+    public function initialize(): void
     {
         $this->lookup();
     }

@@ -97,21 +97,6 @@ trait WithServices
     }
 
     /**
-     * Mount services.
-     *
-     * @return void
-     */
-    public function mountWithServices(): void
-    {
-        /**
-         * @var LivewireService
-         */
-        foreach ($this->livewireServices as $service) {
-            $service->mount();
-        }
-    }
-
-    /**
      * Hydrate services.
      *
      * @return void
@@ -123,6 +108,21 @@ trait WithServices
          */
         foreach ($this->livewireServices as $service) {
             $service->hydrate();
+        }
+    }
+
+    /**
+     * Mount services.
+     *
+     * @return void
+     */
+    public function mountWithServices(): void
+    {
+        /**
+         * @var LivewireService
+         */
+        foreach ($this->livewireServices as $service) {
+            $service->mount();
         }
     }
 
