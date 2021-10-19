@@ -224,8 +224,6 @@ class ArrayInput extends Input
 
         $this->searchTerm = $searchTerm;
 
-        if (empty($this->searchTerm) && !$this->searchOnEmpty) return;
-
         $this->load();
     }
 
