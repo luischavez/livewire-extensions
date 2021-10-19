@@ -241,6 +241,8 @@ class ArrayInput extends Input
         }
 
         if ($this->searchEnabled && !$this->searchOnEmpty && empty($this->searchTerm)) {
+            $this->options = [];
+            $this->closed = true;
             return;
         }
 
