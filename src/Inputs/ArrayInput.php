@@ -240,6 +240,10 @@ class ArrayInput extends Input
             $this->submitted = false;
         }
 
+        if ($this->searchEnabled && !$this->searchOnEmpty && empty($this->searchTerm)) {
+            return;
+        }
+
         $this->options = $this->searchEnabled
             ? $this->search($this->searchTerm, $this->maxItems)
             : $this->options();
