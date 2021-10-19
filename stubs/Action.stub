@@ -1,0 +1,22 @@
+<?php
+
+namespace {{ $package }};
+
+use Luischavez\Livewire\Extensions\Action;
+use Luischavez\Livewire\Extensions\Exceptions\ActionException;
+
+/**
+* Action.
+*/
+class {{ $className }} extends Action
+{
+    /**
+     * Executes the action.
+     *
+     * @return bool
+     */
+    public function execute(): bool
+    {
+        return true;
+    }
+}

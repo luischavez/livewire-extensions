@@ -1,20 +1,20 @@
 <?php
 
-namespace Luischavez\Livewire\Extensions\Inputs;
+namespace {{ $package }};
 
 use Illuminate\Contracts\View\View;
 
 /**
  * Date input model.
  */
-class DateInput extends Input
+class {{ $className }} extends Input
 {
     /**
      * @inheritDoc
      */
     public function mount(): void
     {
-        $this->rules[] = 'date';
+        $this->rules[] = 'string';
     }
 
     /**
@@ -22,6 +22,6 @@ class DateInput extends Input
      */
     public function render(): ?View
     {
-        return view('livewire-ext::inputs.date');
+        return view('');
     }
 }

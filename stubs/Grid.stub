@@ -1,0 +1,26 @@
+<?php
+
+namespace {{ $package }};
+
+use Luischavez\Livewire\Extensions\Grid\{{ $gridClassName }};
+
+/**
+ * Grid.
+ */
+class {{ $className }} extends {{ $gridClassName }}
+{
+    /**
+     * Grid model.
+     *
+     * @var string
+     */
+    protected string $model = Model::class;
+
+    /**
+     * @inheritDoc
+     */
+    public function render(mixed $item): mixed
+    {
+        return '';
+    }
+}

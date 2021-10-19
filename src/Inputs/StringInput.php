@@ -38,7 +38,7 @@ class StringInput extends Input
      */
     public function mount(): void
     {
-        $this->inputRules['type'] = 'string';
+        $this->rules[] = 'string';
     }
 
     /**

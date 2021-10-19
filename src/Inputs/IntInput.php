@@ -14,7 +14,7 @@ class IntInput extends Input
      */
     public function mount(): void
     {
-        $this->inputRules['type'] = 'numeric';
+        $this->rules[] = 'numeric';
     }
 
     /**
