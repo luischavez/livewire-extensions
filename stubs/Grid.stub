@@ -1,13 +1,13 @@
 <?php
 
-namespace {{ $package }};
+namespace DummyNamespace;
 
-use Luischavez\Livewire\Extensions\Grid\{{ $gridClassName }};
+use Luischavez\Livewire\Extensions\Grid\EloquentGridable;
 
 /**
  * Grid.
  */
-class {{ $className }} extends {{ $gridClassName }}
+class DummyClass extends EloquentGridable
 {
     /**
      * Grid model.

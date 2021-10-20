@@ -1,14 +1,13 @@
 <?php
 
-namespace {{ $package }};
+namespace DummyNamespace;
 
 use Luischavez\Livewire\Extensions\Action;
-use Luischavez\Livewire\Extensions\Exceptions\ActionException;
 
 /**
 * Action.
 */
-class {{ $className }} extends Action
+class DummyClass extends Action
 {
     /**
      * Executes the action.

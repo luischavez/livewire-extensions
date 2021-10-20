@@ -2,9 +2,9 @@
 
 namespace Luischavez\Livewire\Extensions\Commands;
 
-use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
 
-class MakeAction extends Command
+class MakeAction extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
@@ -21,24 +21,18 @@ class MakeAction extends Command
     protected $description = 'Generates a new action';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * @inheritDoc
      */
-    public function __construct()
+    protected function getStub()
     {
-        parent::__construct();
+        return __DIR__.'/../../stubs/Action.stub';
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return int
+     * @inheritDoc
      */
-    public function handle()
+    protected function getDefaultNamespace($rootNamespace)
     {
-        $name = $this->argument('name');
-
-        return 0;
+        return "$rootNamespace\Actions";
     }
 }

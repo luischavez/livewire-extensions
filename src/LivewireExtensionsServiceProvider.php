@@ -8,7 +8,6 @@ use Luischavez\Livewire\Extensions\Commands\Iconify;
 use Luischavez\Livewire\Extensions\Commands\MakeAction;
 use Luischavez\Livewire\Extensions\Commands\MakeGrid;
 use Luischavez\Livewire\Extensions\Commands\MakeInput;
-use Luischavez\Livewire\Extensions\Commands\MakeSearch;
 use Luischavez\Livewire\Extensions\Inputs\ArrayInput;
 use Luischavez\Livewire\Extensions\Inputs\DateInput;
 use Luischavez\Livewire\Extensions\Inputs\EloquentInput;
@@ -78,7 +77,6 @@ class LivewireExtensionsServiceProvider extends ServiceProvider
                 MakeAction::class,
                 MakeGrid::class,
                 MakeInput::class,
-                MakeSearch::class,
             ]);
         }
     }

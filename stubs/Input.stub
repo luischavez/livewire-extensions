@@ -1,13 +1,14 @@
 <?php
 
-namespace {{ $package }};
+namespace DummyNamespace;
 
 use Illuminate\Contracts\View\View;
+use Luischavez\Livewire\Extensions\Inputs\Input;
 
 /**
  * Date input model.
  */
-class {{ $className }} extends Input
+class DummyClass extends Input
 {
     /**
      * @inheritDoc
