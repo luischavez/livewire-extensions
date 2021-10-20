@@ -83,6 +83,20 @@ class Grid extends ExtendedComponent
     public string $justify = 'center';
 
     /**
+     * Auto justify to left if the content is less than expected.
+     *
+     * @var boolean
+     */
+    public bool $autoJustify = false;
+
+    /**
+     * Current justification.
+     *
+     * @var string
+     */
+    public string $currentJustification = 'center';
+
+    /**
      * Gap between items.
      *
      * @var float
@@ -153,9 +167,10 @@ class Grid extends ExtendedComponent
     /**
      * Refresh the grid data.
      *
+     * @param int|null $itemsPerRow items per row
      * @return void
      */
-    protected function refreshGridableData(): void
+    protected function refreshGridableData(?int $itemsPerRow = null): void
     {
         $this->gridableInstance()->applyFilters($this->filters);
         $data = $this->gridableInstance()->data($this->paginate, $this->perPage + $this->additionalPerPage, $this->page);
@@ -163,6 +178,14 @@ class Grid extends ExtendedComponent
         $this->items = $data->items;
         $this->pages = $data->pages;
         $this->total = $data->total;
+
+        $this->currentJustification = $this->justify;
+
+        if ($itemsPerRow !== null) {
+            if ($this->autoJustify && count($this->items) < $itemsPerRow) {
+                $this->currentJustification = 'left';
+            }
+        }
     }
 
     /**
@@ -224,10 +247,6 @@ class Grid extends ExtendedComponent
      */
     public function fillGrid(float $gridWidth, float $itemWidth): void
     {
-        if (!$this->fixLength) {
-            return;
-        }
-
         $gridWidth += $this->gap;
         $itemWidth += $this->gap;
 
@@ -252,19 +271,23 @@ class Grid extends ExtendedComponent
             $additionalPerPage = 0;
         }
 
-        // P = Page, PP = PerPage, AP = Additinoal, FI = First visible item
-        // ((P - 1) * (PP + AP)) + 1 = FI
-        // P = ?
-        // (P - 1) * (PP + AP) = FI - 1
-        // P - 1 = (FI - 1) / (PP + AP)
-        // P = ((FI - 1) / (PP + AP)) + 1
-        $currentFirstVisibleItem = (($this->page - 1) * ($this->perPage + $this->additionalPerPage)) + 1;
+        /**
+         * P = Page, PP = PerPage, AP = Additinoal, FI = First visible item
+         * ((P - 1) * (PP + AP)) + 1 = FI
+         * P = ?
+         * (P - 1) * (PP + AP) = FI - 1
+         * P - 1 = (FI - 1) / (PP + AP)
+         * P = ((FI - 1) / (PP + AP)) + 1
+         */
+        if ($this->fixLength) {
+            $currentFirstVisibleItem = (($this->page - 1) * ($this->perPage + $this->additionalPerPage)) + 1;
 
-        $this->additionalPerPage = $additionalPerPage;
+            $this->additionalPerPage = $additionalPerPage;
 
-        $this->page = (($currentFirstVisibleItem - 1) / ($this->perPage + $this->additionalPerPage)) + 1;
+            $this->page = (($currentFirstVisibleItem - 1) / ($this->perPage + $this->additionalPerPage)) + 1;
+        }
 
-        $this->refreshGridableData();
+        $this->refreshGridableData($itemsPerRow);
     }
 
     /**
