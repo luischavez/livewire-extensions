@@ -104,6 +104,13 @@ class Grid extends ExtendedComponent
     public float $gap = 0;
 
     /**
+     * Items per row.
+     *
+     * @var integer
+     */
+    public int $itemsPerRow = 0;
+
+    /**
      * Filters.
      *
      * @var array
@@ -167,10 +174,9 @@ class Grid extends ExtendedComponent
     /**
      * Refresh the grid data.
      *
-     * @param int|null $itemsPerRow items per row
      * @return void
      */
-    protected function refreshGridableData(?int $itemsPerRow = null): void
+    protected function refreshGridableData(): void
     {
         $this->gridableInstance()->applyFilters($this->filters);
         $data = $this->gridableInstance()->data($this->paginate, $this->perPage + $this->additionalPerPage, $this->page);
@@ -181,8 +187,8 @@ class Grid extends ExtendedComponent
 
         $this->currentJustification = $this->justify;
 
-        if ($itemsPerRow !== null) {
-            if ($this->autoJustify && count($this->items) < $itemsPerRow) {
+        if ($this->itemsPerRow > 0) {
+            if ($this->autoJustify && count($this->items) < $this->itemsPerRow) {
                 $this->currentJustification = 'left';
             }
         }
@@ -271,6 +277,8 @@ class Grid extends ExtendedComponent
             $additionalPerPage = 0;
         }
 
+        $this->itemsPerRow = $itemsPerRow;
+
         /**
          * P = Page, PP = PerPage, AP = Additinoal, FI = First visible item
          * ((P - 1) * (PP + AP)) + 1 = FI
@@ -287,7 +295,7 @@ class Grid extends ExtendedComponent
             $this->page = (($currentFirstVisibleItem - 1) / ($this->perPage + $this->additionalPerPage)) + 1;
         }
 
-        $this->refreshGridableData($itemsPerRow);
+        $this->refreshGridableData();
     }
 
     /**
