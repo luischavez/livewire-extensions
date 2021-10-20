@@ -52,7 +52,7 @@
                 getFirstItemWidth();
             }, false);
         "
-        :style="`display: grid; justify-content: {{ $currentJustification }}; grid-column-gap: {{ $gap }}px; grid-template-columns: repeat(auto-fit, ${itemWidth}px);`"
+        :style="`display: grid; justify-content: {{ $justify }}; grid-column-gap: {{ $gap }}px; grid-template-columns: repeat(auto-fit, ${itemWidth}px);`"
     >
         @foreach ($items as $item)
             <div class="max-w-max min-w-min">

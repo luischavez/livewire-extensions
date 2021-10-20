@@ -83,20 +83,6 @@ class Grid extends ExtendedComponent
     public string $justify = 'center';
 
     /**
-     * Auto justify to left if the content is less than expected.
-     *
-     * @var boolean
-     */
-    public bool $autoJustify = false;
-
-    /**
-     * Current justification.
-     *
-     * @var string
-     */
-    public string $currentJustification = 'center';
-
-    /**
      * Gap between items.
      *
      * @var float
@@ -184,14 +170,6 @@ class Grid extends ExtendedComponent
         $this->items = $data->items;
         $this->pages = $data->pages;
         $this->total = $data->total;
-
-        $this->currentJustification = $this->justify;
-
-        if ($this->itemsPerRow > 0) {
-            if ($this->autoJustify && count($this->items) < $this->itemsPerRow) {
-                $this->currentJustification = 'left';
-            }
-        }
     }
 
     /**
