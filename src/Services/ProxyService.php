@@ -457,10 +457,11 @@ class ProxyService extends LivewireService
     public function change(string $proxyName, array $initialData = []): void
     {
         $this->component->clearValidation();
+        
+        $this->make($proxyName, $initialData);
+
         $this->component->proxyData = [];
         $this->component->proxyName = $proxyName;
-        
-        $this->make($this->component->proxyName, $initialData);
 
         if (!$this->proxy->_mounted) {
             $this->proxy->mount();
