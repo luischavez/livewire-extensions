@@ -473,8 +473,10 @@ class ProxyService extends LivewireService
 
     /**
      * @inheritDoc
+     *
+     * @return void
      */
-    public function hydrate(): void
+    public function mount(): void
     {
         if ($this->component->proxyName !== null) {
             $this->make($this->component->proxyName);
@@ -488,6 +490,14 @@ class ProxyService extends LivewireService
 
             $this->dehydrateProxyData();
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hydrate(): void
+    {
+        $this->mount();
     }
 
     /**
