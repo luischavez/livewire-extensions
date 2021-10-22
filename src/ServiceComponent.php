@@ -24,7 +24,7 @@ use Throwable;
 /**
  * Extended Livewire component.
  */
-class ExtendedComponent extends Component
+class ServiceComponent extends Component
 {
     use WithServices,
         WithTag,

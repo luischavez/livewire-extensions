@@ -7,7 +7,7 @@ use Luischavez\Livewire\Extensions\Traits\WithProxy;
 /**
  * Proxy Livewire component.
  */
-class ProxyComponent extends ExtendedComponent
+class ProxyComponent extends ServiceComponent
 {
     use WithProxy;
 }

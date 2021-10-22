@@ -4,12 +4,12 @@ namespace Luischavez\Livewire\Extensions\Widgets;
 
 use Illuminate\Contracts\View\View;
 use Luischavez\Livewire\Extensions\Callback;
-use Luischavez\Livewire\Extensions\ExtendedComponent;
+use Luischavez\Livewire\Extensions\ServiceComponent;
 
 /**
  * Dialog widget.
  */
-class Dialog extends ExtendedComponent
+class Dialog extends ServiceComponent
 {
     const DEFAULT = 'default';
     const SUCCESS = 'success';

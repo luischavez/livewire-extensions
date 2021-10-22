@@ -3,14 +3,14 @@
 namespace Luischavez\Livewire\Extensions\Widgets;
 
 use Illuminate\Contracts\View\View;
-use Luischavez\Livewire\Extensions\ExtendedComponent;
+use Luischavez\Livewire\Extensions\ServiceComponent;
 use Luischavez\Livewire\Extensions\Grid\Gridable;
 use Luischavez\Livewire\Extensions\TypeFinder;
 
 /**
  * Grid component.
  */
-class Grid extends ExtendedComponent
+class Grid extends ServiceComponent
 {
     /**
      * Gridable class name.
