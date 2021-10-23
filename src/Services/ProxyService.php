@@ -252,6 +252,14 @@ class ProxyService extends LivewireService
      */
     protected function parseWireMethod(string $type, ?string $name, ?string $parameters, bool $parenthesis): ?string
     {
+        // Ignore already parsed.
+        if (str_contains($name ?? '', 'proxyData')
+            || str_contains($name ?? '', 'callProxyMethod')
+            || str_contains($parameters ?? '', 'proxyData')
+            || str_contains($parameters ?? '', 'callProxyMethod')) {
+            return null;
+        }
+
         $arrays = [];
         $values = $this->normalizeWireMethodParameters($parameters, $arrays);
 
@@ -378,6 +386,10 @@ class ProxyService extends LivewireService
      */
     protected function parseWireAttributeValue(string $name, string $value): ?string
     {
+        if ($name == 'id') {
+            return null;
+        }
+
         if (str_starts_with($name, 'parent.')) {
             return null;
         }
@@ -620,7 +632,8 @@ class ProxyService extends LivewireService
             ->first();
 
         if ($method === null) {
-            throw new ProxyException("Undefined or not public method named $methodName");
+            $componentClassName = class_basename($this->component);
+            throw new ProxyException("Undefined or not public method named $methodName in $componentClassName");
         }
 
         $result = $method->invoke(...$parameters);
