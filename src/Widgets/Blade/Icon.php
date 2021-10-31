@@ -68,7 +68,7 @@ class Icon extends Component
         try {
             $icons = require resource_path("icons/{$this->group}.php");
         } catch (Throwable $ex) {
-            $icons = require __DIR__."../../../../../../../resources/icons/{$this->group}.php";
+            $icons = require __DIR__."/../../../resources/icons/{$this->group}.php";
         }
 
         if (isset($icons[$this->name])) {
