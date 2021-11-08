@@ -179,8 +179,6 @@ class Callback extends Transformable
             ? $taggingService->tag()
             : null;
 
-        $parameters = array_merge($this->extra, $parameters);
-
         if ($type != 'component') {
             $parameters = [
                 $type,

@@ -386,7 +386,11 @@ class ProxyService extends LivewireService
      */
     protected function parseWireAttributeValue(string $name, string $value): ?string
     {
-        if ($name == 'id') {
+        if (in_array($name, ['id'])) {
+            return null;
+        }
+
+        if (str_starts_with($name, 'loading')) {
             return null;
         }
 

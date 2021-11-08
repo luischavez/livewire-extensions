@@ -69,8 +69,10 @@
     class="w-full">
     <div class="relative flex flex-col w-full">
         <div class="relative flex w-full">
-            <input x-ref="input"
+            <input
+                x-ref="input"
                 wire:model.debounce.300ms="searchTerm"
+                wire:loading.attr.delay="disabled"
                 x-on:keyup.escape="close()"
                 x-on:click="toggle()"
                 x-on:click.away="close()"
@@ -83,7 +85,8 @@
                 type="text"
                 placeholder="{{ $placeholder ?? '' }}"
                 spellcheck="false"
-                @if ($multiple || !$searchEnabled) readonly @endif>
+                @if ($multiple || !$searchEnabled) readonly @endif
+            >
 
             @if ($multiple || !$searchEnabled)
                 <x-widgets-icon x-on:click="toggle()"
