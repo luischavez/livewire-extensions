@@ -67,7 +67,7 @@ trait WithProxy
      * @param mixed     ...$parameters  parameters
      * @return mixed
      */
-    public function callProxyInternalMethod(string $methodName, mixed ...$parameters): mixed
+    protected function callProxyInternalMethod(string $methodName, mixed ...$parameters): mixed
     {
         return $this->proxyService->callProxyInternalMethod($methodName, ...$parameters);
     }
