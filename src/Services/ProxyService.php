@@ -543,6 +543,7 @@ class ProxyService extends LivewireService
             PropertyProtectionService::throwIfProtected($realKey, $protectedProperties);
 
             $this->proxy->updating($realKey, $value);
+            $this->dehydrateProxyData();
         }
     }
 
@@ -566,6 +567,7 @@ class ProxyService extends LivewireService
 
             data_set($this->proxy, $realKey, $value);
             $this->proxy->updated($realKey, $value);
+            $this->dehydrateProxyData();
         }
     }
 
