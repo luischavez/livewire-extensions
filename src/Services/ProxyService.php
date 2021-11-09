@@ -5,6 +5,7 @@ namespace Luischavez\Livewire\Extensions\Services;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
+use Illuminate\Validation\ValidationException;
 use Luischavez\Livewire\Extensions\Exceptions\ProxyException;
 use Luischavez\Livewire\Extensions\Proxy;
 use Luischavez\Livewire\Extensions\Reflection\Inspector;
@@ -542,8 +543,13 @@ class ProxyService extends LivewireService
             $protectedProperties = $this->proxy->getProtectedProperties();
             PropertyProtectionService::throwIfProtected($realKey, $protectedProperties);
 
-            $this->proxy->updating($realKey, $value);
-            $this->dehydrateProxyData();
+            try {
+                $this->proxy->updating($realKey, $value);
+                $this->dehydrateProxyData();
+            } catch (ValidationException $ex) {
+                $this->dehydrateProxyData();
+                throw $ex;
+            }
         }
     }
 
@@ -566,8 +572,14 @@ class ProxyService extends LivewireService
             }
 
             data_set($this->proxy, $realKey, $value);
-            $this->proxy->updated($realKey, $value);
-            $this->dehydrateProxyData();
+
+            try {
+                $this->proxy->updated($realKey, $value);
+                $this->dehydrateProxyData();
+            } catch (ValidationException $ex) {
+                $this->dehydrateProxyData();
+                throw $ex;
+            }
         }
     }
 
