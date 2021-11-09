@@ -612,6 +612,55 @@ class ProxyService extends LivewireService
     }
 
     /**
+     * Calls an internal method on the proxy instance.
+     *
+     * @param string    $methodName     method name
+     * @param mixed     ...$parameters  parameters
+     * @return mixed
+     * 
+     * @throws ProxyException
+     */
+    public function callProxyInternalMethod(string $methodName, mixed ...$parameters): mixed
+    {
+        if ($this->proxy === null) {
+            throw new ProxyException("Proxy not instantiated");
+        }
+
+        $proxyMethods = Inspector::inspect(Proxy::class)
+            ->method()
+            ->withModifiers(InspectorQuery::PUBLIC_MODIFIER)
+            ->all();
+
+        /**
+         * @var Method
+         */
+        foreach ($proxyMethods as $proxyMethod) {
+            if ($proxyMethod->name() == $methodName) {
+                throw new ProxyException("$methodName is not a callable method");
+            }
+        }
+
+        /**
+         * @var Method|null
+         */
+        $method = Inspector::inspect($this->proxy)
+            ->method()
+            ->withName($methodName)
+            ->first();
+
+        if ($method === null) {
+            $componentClassName = class_basename($this->component);
+            throw new ProxyException("Undefined or not public method named $methodName in $componentClassName");
+        }
+
+        $result = $method->invoke(...$parameters);
+
+        $this->dehydrateProxyData();
+        
+        return $result;
+    }
+
+    /**
      * Calls a method on the proxy instance.
      *
      * @param string    $methodName     method name
