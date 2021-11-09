@@ -43,7 +43,7 @@
     x-transition.scale.50
     x-cloak
     x-show="show"
-    class="flex overflow-hidden bg-white rounded-lg shadow-lg max-w-max">
+    class="flex bg-white rounded-lg shadow-lg max-w-max">
     <div :class="{
             'bg-black'      : type == 'default' || type == '',
             'bg-green-500'  : type == 'success',
