@@ -89,7 +89,7 @@
                     </span>
                 </h3>
             </div>
-            <p class="w-full h-full p-1 text-xs">
+            <div class="p-1 text-xs">
                 <p class="overflow-scroll text-xs break-words max-h-40">
                     {!! $message !!}
                 </p>
@@ -102,7 +102,7 @@
                             :input-callback="callback($this)->toSelf('input')" />
                     </div>
                 @endif
-            </p>
+            </div>
         </div>
 
         <div class="flex justify-end px-2 py-1 space-x-2 text-xs">
