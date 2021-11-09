@@ -12,6 +12,7 @@ use Luischavez\Livewire\Extensions\Reflection\Inspector;
 use Luischavez\Livewire\Extensions\Reflection\InspectorQuery;
 use Luischavez\Livewire\Extensions\Services\AlertService;
 use Luischavez\Livewire\Extensions\Services\DialogService;
+use Luischavez\Livewire\Extensions\Services\ProxyService;
 
 /**
  * Component proxy.
@@ -255,6 +256,9 @@ abstract class Proxy extends Caller
         $messages = $this->prefixArrayWithProxyData($messages);
         $attributes = $this->prefixArrayWithProxyData($attributes);
 
+        $proxyService = ProxyService::of($this->component);
+        $proxyService->dehydrate();
+
         return $this->component->validate($rules, $messages, $attributes);
     }
 
@@ -284,6 +288,9 @@ abstract class Proxy extends Caller
         $rules = $this->prefixArrayWithProxyData($rules);
         $messages = $this->prefixArrayWithProxyData($messages);
         $attributes = $this->prefixArrayWithProxyData($attributes);
+
+        $proxyService = ProxyService::of($this->component);
+        $proxyService->dehydrate();
 
         return $this->component->validateOnly("proxyData.$field", $rules, $messages, $attributes);
     }
