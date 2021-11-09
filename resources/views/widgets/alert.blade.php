@@ -89,7 +89,7 @@
                     </span>
                 </h3>
             </div>
-            <p class="p-1 text-xs">
+            <p class="w-full h-full p-1 text-xs">
                 <p class="overflow-scroll text-xs break-words max-h-40">
                     {!! $message !!}
                 </p>
