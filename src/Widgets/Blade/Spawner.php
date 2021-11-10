@@ -51,14 +51,17 @@ class Spawner extends Component
      * @param string|null   $parentId                   parent id
      * @param boolean       $blurBackground             blur background
      * @param boolean       $disableBackgroundEvents    disables background events
+     * @param boolean       $replace                    replace previous component on spawn
      */
     public function __construct(string $name, ?string $parentId = null,
-        bool $blurBackground = false, bool $disableBackgroundEvents = false)
+        bool $blurBackground = false, bool $disableBackgroundEvents = false,
+        bool $replace = false)
     {
         $this->name = $name;
         $this->parentId = $parentId;
         $this->blurBackground = $blurBackground;
         $this->disableBackgroundEvents = $disableBackgroundEvents;
+        $this->replace = $replace;
     }
 
     /**
