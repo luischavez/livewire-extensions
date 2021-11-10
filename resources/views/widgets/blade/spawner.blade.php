@@ -10,9 +10,7 @@
             if (typeof view === 'undefined') return;
 
             if (this.replace) {
-                for (let id of this.viewIds) {
-                    this.remove(id);
-                }
+                $el.firstElementChild?.remove();
             }
 
             let fragment = document.createDocumentFragment();
