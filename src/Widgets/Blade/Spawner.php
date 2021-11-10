@@ -38,6 +38,13 @@ class Spawner extends Component
     public bool $disableBackgroundEvents = false;
 
     /**
+     * Replace previous component on spawn.
+     *
+     * @var boolean
+     */
+    public bool $replace = false;
+
+    /**
      * Create a new component instance.
      *
      * @param string        $name                       name

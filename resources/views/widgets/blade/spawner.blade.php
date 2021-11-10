@@ -3,10 +3,17 @@
         parentId: '{{ $parentId }}',
         blurBackground: {{ $blurBackground ? 'true' : 'false' }},
         disableBackgroundEvents: {{ $disableBackgroundEvents ? 'true' : 'false' }},
+        replace: {{ $replace ? 'true' : 'false' }},
         viewIds: [],
 
         show(view) {
             if (typeof view === 'undefined') return;
+
+            if (this.replace) {
+                for (let id of this.viewIds) {
+                    this.remove(id);
+                }
+            }
 
             let fragment = document.createDocumentFragment();
             let div = document.createElement('div');
