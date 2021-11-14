@@ -41,7 +41,7 @@
             </div>
             <div class="flex flex-col p-2 space-y-1">
                 <span class="break-words">
-                    {{ $message }}
+                    {!! $message !!}
                 </span>
                 @if ($inputName)
                     <div class="w-full">
