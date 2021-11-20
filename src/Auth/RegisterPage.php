@@ -43,16 +43,32 @@ class RegisterPage extends AuthPage
     public string $password_confirmation = '';
 
     /**
-     * Validation rules.
-     * 
-     * @var array
+     * Show name field.
+     *
+     * @var boolean
      */
-    public array $rules = [
-        'name'                     => 'required|alpha_dash|min:6|max:24',
-        'email'                    => 'required|email|unique:users,email',
-        'password'                 => 'required|confirmed',
-        'password_confirmation'    => 'required',
-    ];
+    public bool $showName = true;
+
+    /**
+     * @inheritDoc
+     *
+     * @return array
+     */
+    public function getValidationRules(): array
+    {
+        $rules = [
+            'name'                     => 'required|alpha_dash|min:6|max:24',
+            'email'                    => 'required|email|unique:users,email',
+            'password'                 => 'required|confirmed',
+            'password_confirmation'    => 'required',
+        ];
+
+        if (!$this->showName) {
+            unset($rules['name']);
+        }
+
+        return $rules;
+    }
 
     /**
      * @inheritDoc
@@ -95,7 +111,11 @@ class RegisterPage extends AuthPage
 
         try {
             $user = new $model();
-            $user->name = $this->name;
+            
+            if ($this->showName) {
+                $user->name = $this->name;
+            }
+
             $user->email = $this->email;
             $user->password = Hash::make($this->password);
             $user->save();

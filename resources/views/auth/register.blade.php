@@ -7,29 +7,31 @@
                 </h2>
             </div>
             <div class="flex flex-wrap p-2">
-                <div class="flex flex-col w-full m-1">
-                    <div class="flex flex-wrap items-center">
-                        <div class="flex-auto w-1/5 min-w-min">
-                            <label for="name">
-                                @error('name')
-                                    <span class="text-red-500">*</span>
-                                @enderror
-                                {{ __('livewire-ext::auth.name') }}
-                            </label>
+                @if ($showName)
+                    <div class="flex flex-col w-full m-1">
+                        <div class="flex flex-wrap items-center">
+                            <div class="flex-auto w-1/5 min-w-min">
+                                <label for="name">
+                                    @error('name')
+                                        <span class="text-red-500">*</span>
+                                    @enderror
+                                    {{ __('livewire-ext::auth.name') }}
+                                </label>
+                            </div>
+                            <div class="flex flex-auto w-4/5">
+                                <input wire:model.debounce.500ms="name"
+                                    id="name"
+                                    class="w-full p-2 border-2 rounded-md @error('name') border-red-500 @enderror"
+                                    type="text">
+                            </div>
                         </div>
-                        <div class="flex flex-auto w-4/5">
-                            <input wire:model.debounce.500ms="name"
-                                id="name"
-                                class="w-full p-2 border-2 rounded-md @error('name') border-red-500 @enderror"
-                                type="text">
-                        </div>
+                        @error('name')
+                            <span class="p-1 text-sm text-right text-red-500 opacity-70">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
-                    @error('name')
-                        <span class="p-1 text-sm text-right text-red-500 opacity-70">
-                            {{ $message }}
-                        </span>
-                    @enderror
-                </div>
+                @endif
                 <div class="flex flex-col w-full m-1">
                     <div class="flex flex-wrap items-center">
                         <div class="flex-auto w-1/5 min-w-min">

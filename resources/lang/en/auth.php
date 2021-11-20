@@ -21,14 +21,14 @@ return [
     'pages' => [
         'login' => [
             'title_success'     => 'Successfully logged!',
-            'message_success'   => 'Welcome back :name!',
+            'message_success'   => 'Welcome back!',
 
             'title_error'   => 'Error',
             'message_error' => 'Please verify your credentials',
         ],
         'register' => [
             'title_success'     => 'Successfully registered!',
-            'message_success'   => 'Welcome :name!',
+            'message_success'   => 'Welcome!',
 
             'title_error'   => 'Error',
             'message_error' => 'Please verify your information or contact the support team',
