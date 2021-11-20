@@ -96,7 +96,7 @@ class AuthService extends LivewireService
      */
     public function setUser(mixed $user): void
     {
-        auth()->setUser($user);
+        auth()->loginUsingId($user->id, true);
         $this->emitLogged();
     }
 
