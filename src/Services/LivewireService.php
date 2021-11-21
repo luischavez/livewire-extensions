@@ -133,7 +133,7 @@ abstract class LivewireService
      * @param bool      $initialize initializes the service if not exists
      * @return static|null
      */
-    public static function of(Component $component, bool $initialize = false)
+    public static function of(Component $component, bool $initialize = false): ?static
     {
         $type = static::class;
 
