@@ -741,7 +741,7 @@ class ProxyService extends LivewireService
      */
     public function render(View $view): ?View
     {
-        $proxyView = $this->proxy?->render();
+        $proxyView = $this->proxy ? $this->proxy->render() : null;
 
         if ($proxyView !== null) {
             $componentErrorBag = $this->component->getErrorBag();
