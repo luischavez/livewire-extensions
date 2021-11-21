@@ -40,11 +40,11 @@ class SmartInput extends ProxyComponent
      * Mount the component.
      *
      * @param string    $input      input name
-     * @param     $value      input value
+     * @param mixed     $value      input value
      * @param array     $options    input options
      * @return void
      */
-    public function mount(string $input, $value = null, array $options = []): void
+    public function mount(string $input, mixed $value = null, array $options = []): void
     {
         if ($value !== null) {
             $options['value'] = $value;
@@ -66,7 +66,7 @@ class SmartInput extends ProxyComponent
     /**
      * @inheritDoc
      */
-    public function updated(string $key, $value): void
+    public function updated(string $key, mixed $value): void
     {
         if ($key == 'proxyData.value') {
             // Make sure the value is updated.

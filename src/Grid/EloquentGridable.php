@@ -57,7 +57,7 @@ abstract class EloquentGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function key($item)
+    public function key(mixed $item): mixed
     {
         return $item->id;
     }
@@ -65,7 +65,7 @@ abstract class EloquentGridable extends Gridable
     /**
      * @inheritDoc
      */
-    public function itemName($item): string
+    public function itemName(mixed $item): string
     {
         return Str::camel(class_basename($this->model));
     }

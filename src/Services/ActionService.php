@@ -43,10 +43,10 @@ class ActionService extends LivewireService
      *
      * @param string    $actionName action name
      * @param array     $parameters action parameters
-     * @param     $result     action result
+     * @param mixed     $result     action result
      * @return void
      */
-    protected function notifyCaller(string $actionName, array $parameters, $result): void
+    protected function notifyCaller(string $actionName, array $parameters, mixed $result): void
     {
         /**
          * @var Method|null
@@ -67,10 +67,10 @@ class ActionService extends LivewireService
      *
      * @param string    $actionName action name
      * @param array     $parameters action parameters
-     * @param     $result     action result
+     * @param mixed     $result     action result
      * @return void
      */
-    protected function emitEvents(string $actionName, array $parameters, $result): void
+    protected function emitEvents(string $actionName, array $parameters, mixed $result): void
     {
         /**
          * @var TaggingService
@@ -93,12 +93,12 @@ class ActionService extends LivewireService
      * Executes an action.
      *
      * @param string    $actionName
-     * @param     ...$parameters
-     * 
+     * @param mixed     ...$parameters
+     * @return mixed
      * 
      * @throws ActionException
      */
-    public function execute(string $actionName, ...$parameters)
+    public function execute(string $actionName, mixed ...$parameters): mixed
     {
         $action = $this->getAction($actionName);
 
@@ -124,11 +124,11 @@ class ActionService extends LivewireService
      * @param string    $actionName action name
      * @param string    $event      event name
      * @param array     $parameters event parameters
-     * 
+     * @return mixed
      * 
      * @throws ActionException
      */
-    public function handleActionCallbackEvent(string $actionName, string $event, array $parameters)
+    public function handleActionCallbackEvent(string $actionName, string $event, array $parameters): mixed
     {
         $action = $this->getAction($actionName);
 

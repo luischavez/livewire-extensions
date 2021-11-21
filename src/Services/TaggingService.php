@@ -37,10 +37,10 @@ class TaggingService extends LivewireService
      * @param string        $event
      * @param string|null   $tag
      * @param string|null   $component
-     * @param         ...$parameters
+     * @param mixed         ...$parameters
      * @return void
      */
-    public function emitEvent(string $event, ?string $tag = null, ?string $component = null, ...$parameters): void
+    public function emitEvent(string $event, ?string $tag = null, ?string $component = null, mixed ...$parameters): void
     {
         $route = RouteUtils::fromRouteString(RouteUtils::toRoute($event, $tag, $component));
 
@@ -58,10 +58,10 @@ class TaggingService extends LivewireService
      * Emit an event to a route.
      *
      * @param string    $routeString    route string
-     * @param     ...$parameters  parameters
+     * @param mixed     ...$parameters  parameters
      * @return void
      */
-    public function emitToRoute(string $routeString, ...$parameters): void
+    public function emitToRoute(string $routeString, mixed ...$parameters): void
     {
         self::emitToRouteWithComponent($this->component, $routeString, ...$parameters);  
     }
@@ -81,10 +81,10 @@ class TaggingService extends LivewireService
      *
      * @param Component $component      component
      * @param string    $routeString    route string
-     * @param     ...$parameters  parameters
+     * @param mixed     ...$parameters  parameters
      * @return void
      */
-    public static function emitToRouteWithComponent(Component $component, string $routeString, ...$parameters): void
+    public static function emitToRouteWithComponent(Component $component, string $routeString, mixed ...$parameters): void
     {
         $route = RouteUtils::fromRouteString($routeString);
 

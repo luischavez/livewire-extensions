@@ -64,10 +64,10 @@ trait WithProxy
      * Calls an internal proxy method.
      *
      * @param string    $methodName     method name
-     * @param     ...$parameters  parameters
-     * 
+     * @param mixed     ...$parameters  parameters
+     * @return mixed
      */
-    protected function callProxyInternalMethod(string $methodName, ...$parameters)
+    protected function callProxyInternalMethod(string $methodName, mixed ...$parameters): mixed
     {
         return $this->proxyService->callProxyInternalMethod($methodName, ...$parameters);
     }
@@ -76,10 +76,10 @@ trait WithProxy
      * Calls a proxy method.
      *
      * @param string    $methodName     method name
-     * @param     ...$parameters  parameters
-     * 
+     * @param mixed     ...$parameters  parameters
+     * @return mixed
      */
-    public function callProxyMethod(string $methodName, ...$parameters)
+    public function callProxyMethod(string $methodName, mixed ...$parameters): mixed
     {
         return $this->proxyService->callProxyMethod($methodName, ...$parameters);
     }
@@ -103,9 +103,9 @@ trait WithProxy
      * @param string    $name       proxy name
      * @param string    $event      event name
      * @param array     $parameters event parameters
-     * 
+     * @return mixed
      */
-    protected function handleProxyCallbackEvent(string $name, string $event, array $parameters)
+    protected function handleProxyCallbackEvent(string $name, string $event, array $parameters): mixed
     {
         return $this->proxyService->handleProxyCallbackEvent($name, $event, $parameters);
     }

@@ -12,9 +12,9 @@ class Property
     /**
      * Searched object instance.
      *
-     * 
+     * @var mixed
      */
-    protected $instance;
+    protected mixed $instance;
 
     /**
      * Name.
@@ -33,9 +33,9 @@ class Property
     /**
      * Value.
      *
-     * 
+     * @var mixed
      */
-    protected $value;
+    protected mixed $value;
 
     /**
      * Reflection property.
@@ -47,10 +47,10 @@ class Property
     /**
      * Constructor.
      *
-     * @param                 $instance           searched object instance
+     * @param mixed                 $instance           searched object instance
      * @param ReflectionProperty    $reflectionProperty reflection property
      */
-    public function __construct($instance, ReflectionProperty $reflectionProperty)
+    public function __construct(mixed $instance, ReflectionProperty $reflectionProperty)
     {
         $this->instance = $instance;
         $this->name = $reflectionProperty->getName();
@@ -93,9 +93,9 @@ class Property
     /**
      * Gets the property value.
      *
-     * 
+     * @return mixed
      */
-    public function value()
+    public function value(): mixed
     {
         return $this->value;
     }
@@ -118,10 +118,10 @@ class Property
     /**
      * Sets the value.
      *
-     * @param $value value
+     * @param mixed $value value
      * @return void
      */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->reflectionProperty->setAccessible(true);
         $this->reflectionProperty->setValue($this->instance, $value);

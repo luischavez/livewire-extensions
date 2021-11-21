@@ -12,12 +12,12 @@ class SecurityUtils
     /**
      * Validates the data and throw an error if not valid.
      *
-     * @param $data data
+     * @param mixed $data data
      * @return void
      * 
      * @throws SecurityException
      */
-    public static function throwIfInvalid($data): void
+    public static function throwIfInvalid(mixed $data): void
     {
         if (is_array($data)) {
             foreach ($data as $value) {

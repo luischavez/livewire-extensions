@@ -39,10 +39,10 @@ trait WithTag
      * @param string        $event
      * @param string|null   $tag
      * @param string|null   $component
-     * @param         ...$parameters
+     * @param mixed         ...$parameters
      * @return void
      */
-    protected function emitEvent(string $event, ?string $tag = null, ?string $component = null, ...$parameters): void
+    protected function emitEvent(string $event, ?string $tag = null, ?string $component = null, mixed ...$parameters): void
     {
         $this->taggingService->emitEvent($event, $tag, $component, ...$parameters);
     }

@@ -75,7 +75,7 @@ class Button extends Component
     /**
      * @inheritDoc
      */
-    public function render()
+    public function render(): mixed
     {
         return view('livewire-ext::widgets.blade.button');
     }

@@ -22,9 +22,9 @@ class InspectorQuery
     /**
      * Instance of the object to be searched.
      *
-     * 
+     * @var mixed
      */
-    protected $instance;
+    protected mixed $instance;
 
     /**
      * Target of this query.
@@ -57,10 +57,10 @@ class InspectorQuery
     /**
      * Constructor.
      *
-     * @param     $instance  object instance
+     * @param mixed     $instance  object instance
      * @param string    $target    target
      */
-    public function __construct($instance, string $target)
+    public function __construct(mixed $instance, string $target)
     {
         $this->instance = $instance;
         $this->target = $target;
@@ -213,9 +213,9 @@ class InspectorQuery
     /**
      * Gets the first result.
      *
-     * 
+     * @return mixed
      */
-    public function first()
+    public function first(): mixed
     {
         $results = $this->all(1);
 

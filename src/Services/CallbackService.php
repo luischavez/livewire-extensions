@@ -123,10 +123,10 @@ class CallbackService extends LivewireService
      * Handles the register callback event.
      *
      * @param string    $callbackName   callback name
-     * @param     $callback       callback
+     * @param mixed     $callback       callback
      * @return void
      */
-    public function handleRegisterEvent(string $callbackName, $callback): void
+    public function handleRegisterEvent(string $callbackName, mixed $callback): void
     {
         $callback = Callback::fromJavascript($callback);
         $callback->setComponent($this->component);
@@ -141,9 +141,9 @@ class CallbackService extends LivewireService
      * @param string    $name       caller name
      * @param string    $event      event name
      * @param array     $parameters event parameters
-     * 
+     * @return mixed
      */
-    public function handleCallerCallbackEvent(string $type, string $name, string $event, array $parameters)
+    public function handleCallerCallbackEvent(string $type, string $name, string $event, array $parameters): mixed
     {
         $type = Str::studly($type);
         $methodName = "handle{$type}CallbackEvent";

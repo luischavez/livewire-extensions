@@ -175,11 +175,11 @@ class ArrayInput extends Input
     /**
      * Gets the item value.
      *
-     * @param $id
-     * @param $item
-     * 
+     * @param mixed $id
+     * @param mixed $item
+     * @return mixed
      */
-    protected function itemValue($id, $item)
+    protected function itemValue(mixed $id, mixed $item): mixed
     {
         return $item;
     }
@@ -187,11 +187,11 @@ class ArrayInput extends Input
     /**
      * Render the item.
      *
-     * @param $id
-     * @param $item
+     * @param mixed $id
+     * @param mixed $item
      * @return string
      */
-    protected function renderItem($id, $item): string
+    protected function renderItem(mixed $id, mixed $item): string
     {
         return strval($item);
     }
@@ -280,10 +280,10 @@ class ArrayInput extends Input
      * @inheritDoc
      *
      * @param string    $key    property name
-     * @param     $value  property value
+     * @param mixed     $value  property value
      * @return void
      */
-    public function updated(string $key, $value): void
+    public function updated(string $key, mixed $value): void
     {
         if ($key == 'searchTerm') {
             $this->searchByTerm($value);
@@ -293,10 +293,10 @@ class ArrayInput extends Input
     /**
      * Select a id from the options.
      *
-     * @param $id
+     * @param mixed $id
      * @return void
      */
-    public function select($id): void
+    public function select(mixed $id): void
     {
         $value = $id === null ? null : $this->itemValue($id, $this->options[$id]);
 
@@ -326,10 +326,10 @@ class ArrayInput extends Input
     /**
      * Removes the id from the selected ids.
      *
-     * @param $id
+     * @param mixed $id
      * @return void
      */
-    public function unselect($id): void
+    public function unselect(mixed $id): void
     {
         if ($id === null) {
             return;
@@ -351,7 +351,7 @@ class ArrayInput extends Input
     /**
      * @inheritDoc
      */
-    public function value()
+    public function value(): mixed
     {
         if ($this->multiple) {
             return array_keys($this->value);

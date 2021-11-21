@@ -77,7 +77,7 @@ class EloquentInput extends ArrayInput
     /**
      * @inheritDoc
      */
-    protected function itemValue($id, $item)
+    protected function itemValue(mixed $id, mixed $item): mixed
     {
         return $item['text'];
     }
@@ -85,7 +85,7 @@ class EloquentInput extends ArrayInput
     /**
      * @inheritDoc
      */
-    protected function renderItem($id, $item): string
+    protected function renderItem(mixed $id, mixed $item): string
     {
         return $item['view'];
     }

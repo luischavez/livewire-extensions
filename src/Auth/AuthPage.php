@@ -27,7 +27,7 @@ abstract class AuthPage extends Proxy
     /**
      * @inheritDoc
      */
-    public function updated(string $key, $value): void
+    public function updated(string $key, mixed $value): void
     {
         $this->resetErrorBag($key);
         $this->validateOnly($key);

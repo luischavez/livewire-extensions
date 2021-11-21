@@ -76,9 +76,9 @@ class Alert extends ServiceComponent
     /**
      * Input value.
      * 
-     * 
+     * @var mixed
      */
-    public $inputValue = null;
+    public mixed $inputValue = null;
 
     /**
      * Cancel button visible state.
@@ -194,11 +194,11 @@ class Alert extends ServiceComponent
     /**
      * Triggered on input event.
      *
-     * @param $value input value
+     * @param mixed $value input value
      * @param bool  $valid true if value is valid
      * @return void
      */
-    public function onInput($value, bool $valid): void
+    public function onInput(mixed $value, bool $valid): void
     {
         $this->inputValue = $value;
     }

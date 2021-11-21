@@ -9,8 +9,10 @@ class GridData
 {
     /**
      * Items.
+     *
+     * @var mixed
      */
-    public $items;
+    public mixed $items;
 
     /**
      * Current page index.
@@ -43,13 +45,13 @@ class GridData
     /**
      * Constructor.
      *
-     * @param     $items      items
+     * @param mixed     $items      items
      * @param integer   $page       current page
      * @param integer   $pages      page count
      * @param integer   $perPage    items per page
      * @param integer   $total      total items
      */
-    public function __construct($items, int $page, int $pages, int $perPage, int $total)
+    public function __construct(mixed $items, int $page, int $pages, int $perPage, int $total)
     {
         $this->items = $items;
         $this->page = $page;

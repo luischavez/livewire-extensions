@@ -5,6 +5,7 @@ namespace Luischavez\Livewire\Extensions\Services;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\LifecycleManager;
+use Luischavez\Livewire\Extensions\ServiceComponent;
 use Luischavez\Livewire\Extensions\Reflection\Inspector;
 use Luischavez\Livewire\Extensions\Reflection\InspectorQuery;
 use Luischavez\Livewire\Extensions\Reflection\Property;
@@ -17,12 +18,12 @@ class SpawnService extends LivewireService
     /**
      * Spawn a component.
      *
-     * @param string $spawner    spawner name
-     * @param  $component  component name or instance
-     * @param array  $properties component properties
+     * @param string                    $spawner    spawner name
+     * @param ServiceComponent|string  $component  component name or instance
+     * @param array                     $properties component properties
      * @return void
      */
-    public function spawn(string $spawner, $component, array $properties = []): void
+    public function spawn(string $spawner, ServiceComponent|string $component, array $properties = []): void
     {
         $componentName = $component;
 

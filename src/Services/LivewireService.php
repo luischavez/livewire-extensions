@@ -74,20 +74,20 @@ abstract class LivewireService
      * Run on component property updating.
      *
      * @param string    $key
-     * @param     $value
+     * @param mixed     $value
      * @return void
      */
-    public function updating(string $key, $value): void
+    public function updating(string $key, mixed $value): void
     {}
 
     /**
      * Run on component property updated.
      *
      * @param string    $key
-     * @param     $value
+     * @param mixed     $value
      * @return void
      */
-    public function updated(string $key, $value): void
+    public function updated(string $key, mixed $value): void
     {}
 
     /**

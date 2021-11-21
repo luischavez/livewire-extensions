@@ -40,8 +40,10 @@ abstract class Action extends Caller
 
     /**
      * Notify result.
+     *
+     * @var mixed
      */
-    protected $notifyResult = null;
+    protected mixed $notifyResult = null;
 
     /**
      * Constructor.
@@ -82,10 +84,10 @@ abstract class Action extends Caller
     /**
      * Notify action completed.
      *
-     * @param $result result
+     * @param mixed $result result
      * @return void
      */
-    protected function notify($result): void
+    protected function notify(mixed $result): void
     {
         $this->notify = true;
         $this->notifyResult = $result;
@@ -103,8 +105,10 @@ abstract class Action extends Caller
 
     /**
      * Gets the result.
+     *
+     * @return mixed
      */
-    public function getResult()
+    public function getResult(): mixed
     {
         return $this->notifyResult;
     }
@@ -193,8 +197,9 @@ abstract class Action extends Caller
      *
      * @param string    $event      event name
      * @param array     $parameters parameters
+     * @return mixed
      */
-    public function onEvent(string $event, array $parameters)
+    public function onEvent(string $event, array $parameters): mixed
     {
         $methodName = 'on'.Str::studly($event);
 
@@ -220,8 +225,10 @@ abstract class Action extends Caller
 
     /**
      * Handles the action execution.
+     *
+     * @return mixed
      */
-    public function doExecute()
+    public function doExecute(): mixed
     {
         if (!$this->checkPermissions()) {
             return null;
