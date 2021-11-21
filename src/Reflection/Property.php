@@ -61,11 +61,7 @@ class Property
         }
         $this->value = $reflectionProperty->isInitialized($this->instance)
             ? $reflectionProperty->getValue($this->instance)
-            : (
-                $reflectionProperty->hasDefaultValue()
-                    ? $reflectionProperty->getDefaultValue()
-                    : null
-            );
+            : null;
 
         $this->reflectionProperty = $reflectionProperty;
     }
