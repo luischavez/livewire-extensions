@@ -45,10 +45,10 @@ trait WithCallbacks
      * Run on register callback event.
      *
      * @param string    $callbackName   callback name
-     * @param mixed     $callback       callback
+     * @param     $callback       callback
      * @return void
      */
-    public function onRegisterCallback(string $callbackName, mixed $callback): void
+    public function onRegisterCallback(string $callbackName, $callback): void
     {
         $this->callbackService->handleRegisterEvent($callbackName, $callback);
     }
@@ -60,9 +60,9 @@ trait WithCallbacks
      * @param string    $name       caller name
      * @param string    $event      event name
      * @param array     $parameters event parameters
-     * @return mixed
+     * 
      */
-    public function onCallerCallback(string $type, string $name, string $event, array $parameters): mixed
+    public function onCallerCallback(string $type, string $name, string $event, array $parameters)
     {
         return $this->callbackService->handleCallerCallbackEvent($type, $name, $event, $parameters);
     }

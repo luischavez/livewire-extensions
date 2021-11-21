@@ -36,9 +36,9 @@ trait WithViewProtection
     /**
      * Render the component and validates the authentication status.
      *
-     * @return mixed
+     * 
      */
-    public function renderToView(): mixed
+    public function renderToView()
     {
         $logged = auth()->check();
 

@@ -19,7 +19,7 @@ class Loading extends Component
     /**
      * @inheritDoc
      */
-    public function render(): mixed
+    public function render()
     {
         return view('livewire-ext::widgets.blade.loading');
     }

@@ -218,7 +218,7 @@ class ProxyService extends LivewireService
      *
      * @param array $values     array of values
      * @param array $arrays     array of array values
-     * @param mixed $enclose    encloses the result in parenthesis
+     * @param $enclose    encloses the result in parenthesis
      * @return string
      */
     protected function serializeWireMethodParameters(array $values, array $arrays, bool $enclose = false): string
@@ -531,7 +531,7 @@ class ProxyService extends LivewireService
     /**
      * @inheritDoc
      */
-    public function updating(string $key, mixed $value): void
+    public function updating(string $key, $value): void
     {
         if (!str_starts_with($key, 'proxyData.')) {
             return;
@@ -556,7 +556,7 @@ class ProxyService extends LivewireService
     /**
      * @inheritDoc
      */
-    public function updated(string $key, mixed $value): void
+    public function updated(string $key, $value): void
     {
         if (!str_starts_with($key, 'proxyData.')) {
             return;
@@ -597,12 +597,12 @@ class ProxyService extends LivewireService
      * Set a property on the proxy.
      *
      * @param string    $key    property name
-     * @param mixed     $value  property value
+     * @param     $value  property value
      * @return void
      * 
      * @throws ProxyException
      */
-    public function setValue(string $key, mixed $value): void
+    public function setValue(string $key, $value): void
     {
         if ($this->proxy === null) {
             throw new ProxyException("Proxy not instantiated");
@@ -615,12 +615,12 @@ class ProxyService extends LivewireService
      * Calls an internal method on the proxy instance.
      *
      * @param string    $methodName     method name
-     * @param mixed     ...$parameters  parameters
-     * @return mixed
+     * @param     ...$parameters  parameters
+     * 
      * 
      * @throws ProxyException
      */
-    public function callProxyInternalMethod(string $methodName, mixed ...$parameters): mixed
+    public function callProxyInternalMethod(string $methodName, ...$parameters)
     {
         if ($this->proxy === null) {
             throw new ProxyException("Proxy not instantiated");
@@ -664,12 +664,12 @@ class ProxyService extends LivewireService
      * Calls a method on the proxy instance.
      *
      * @param string    $methodName     method name
-     * @param mixed     ...$parameters  parameters
-     * @return mixed
+     * @param     ...$parameters  parameters
+     * 
      * 
      * @throws ProxyException
      */
-    public function callProxyMethod(string $methodName, mixed ...$parameters): mixed
+    public function callProxyMethod(string $methodName, ...$parameters)
     {
         if ($this->proxy === null) {
             throw new ProxyException("Proxy not instantiated");
@@ -716,11 +716,11 @@ class ProxyService extends LivewireService
      * @param string    $name       proxy name
      * @param string    $event      event name
      * @param array     $parameters event parameters
-     * @return mixed
+     * 
      * 
      * @throws ProxyException
      */
-    public function handleProxyCallbackEvent(string $name, string $event, array $parameters): mixed
+    public function handleProxyCallbackEvent(string $name, string $event, array $parameters)
     {
         if ($this->proxy === null) {
             return null;

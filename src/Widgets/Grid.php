@@ -22,9 +22,9 @@ class Grid extends ServiceComponent
     /**
      * Items.
      *
-     * @var mixed
+     * 
      */
-    public mixed $items = null;
+    public $items = null;
 
     /**
      * Current page index.
@@ -212,10 +212,10 @@ class Grid extends ServiceComponent
      * Apply filters.
      *
      * @param string    $name   filter name
-     * @param mixed     $value  value
+     * @param     $value  value
      * @return void
      */
-    public function applyFilter(string $name, mixed $value): void
+    public function applyFilter(string $name, $value): void
     {
         $this->filters[$name] = $value;
 
@@ -311,10 +311,10 @@ class Grid extends ServiceComponent
      * Run on apply filters event.
      *
      * @param string    $name   filter name
-     * @param mixed     $value  value
+     * @param     $value  value
      * @return void
      */
-    public function onApplyFilter(string $name, mixed $value): void
+    public function onApplyFilter(string $name, $value): void
     {
         $this->applyFilter($name, $value);
     }

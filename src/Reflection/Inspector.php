@@ -10,11 +10,11 @@ class Inspector
     /**
      * Instance to inspect.
      *
-     * @var mixed
+     * 
      */
-    protected mixed $instance;
+    protected $instance;
 
-    protected function __construct(mixed $instance)
+    protected function __construct($instance)
     {
         $this->instance = $instance;
     }
@@ -42,10 +42,10 @@ class Inspector
     /**
      * Creates a new inspector.
      *
-     * @param mixed $instance instance to inspect
+     * @param $instance instance to inspect
      * @return self
      */
-    public static function inspect(mixed $instance): self
+    public static function inspect($instance): self
     {
         return new Inspector($instance);
     }

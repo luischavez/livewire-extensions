@@ -84,10 +84,8 @@ class DialogBuilder
 
     /**
      * Input value.
-     *
-     * @var mixed
      */
-    protected mixed $inputValue = null;
+    protected $inputValue = null;
 
     /**
      * Dimissable flag.
@@ -238,11 +236,11 @@ class DialogBuilder
      * Add an input to the dialog.
      *
      * @param string    $name       input name
-     * @param mixed     $value      input value
+     * @param     $value      input value
      * @param array     $options    input options
      * @return self
      */
-    public function withInput(string $name, mixed $value = null, array $options = []): self
+    public function withInput(string $name, $value = null, array $options = []): self
     {
         $this->inputName = $name;
         $this->inputValue = $value;

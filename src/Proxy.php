@@ -300,9 +300,8 @@ abstract class Proxy extends Caller
      *
      * @param string    $event
      * @param array     $parameters
-     * @return mixed
      */
-    public function onEvent(string $event, array $parameters): mixed
+    public function onEvent(string $event, array $parameters)
     {
         $methodName = 'on'.Str::studly($event);
 
@@ -353,10 +352,10 @@ abstract class Proxy extends Caller
      * Run on updating.
      *
      * @param string    $key    property name
-     * @param mixed     $value  property value
+     * @param     $value  property value
      * @return void
      */
-    public function updating(string $key, mixed $value): void
+    public function updating(string $key, $value): void
     {
 
     }
@@ -365,10 +364,10 @@ abstract class Proxy extends Caller
      * Run on updated.
      *
      * @param string    $key    property name
-     * @param mixed     $value  property value
+     * @param     $value  property value
      * @return void
      */
-    public function updated(string $key, mixed $value): void
+    public function updated(string $key, $value): void
     {
         
     }

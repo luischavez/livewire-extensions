@@ -70,12 +70,12 @@ class AuthService extends LivewireService
     /**
      * Filters the user data.
      *
-     * @param mixed     $user       user instance
+     * @param     $user       user instance
      * @param array     $hidden     hidden user data
      * @param array     $visible    visible user data
      * @return array
      */
-    public function filterUserData(mixed $user, array $hidden, array $visible): array
+    public function filterUserData($user, array $hidden, array $visible): array
     {
         if ($user === null) {
             return [];
@@ -91,10 +91,10 @@ class AuthService extends LivewireService
     /**
      * Set the logged user.
      *
-     * @param mixed $user user
+     * @param $user user
      * @return void
      */
-    public function setUser(mixed $user): void
+    public function setUser($user): void
     {
         auth()->loginUsingId($user->id, true);
         $this->emitLogged();

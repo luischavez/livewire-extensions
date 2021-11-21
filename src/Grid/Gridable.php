@@ -33,18 +33,16 @@ abstract class Gridable
      * Render the grid.
      * You can return a view, string or a livewire component name.
      *
-     * @param mixed $item item
-     * @return mixed
+     * @param $item item
      */
-    public abstract function render(mixed $item): mixed;
+    public abstract function render($item);
 
     /**
      * Gets the item key.
      *
-     * @param mixed $item item
-     * @return mixed
+     * @param $item item
      */
-    public function key(mixed $item): mixed
+    public function key($item)
     {
         return null;
     }
@@ -52,10 +50,10 @@ abstract class Gridable
     /**
      * Gets the item name.
      *
-     * @param mixed $item item
+     * @param $item item
      * @return string
      */
-    public function itemName(mixed $item): string
+    public function itemName($item): string
     {
         return 'item';
     }
@@ -63,10 +61,10 @@ abstract class Gridable
     /**
      * Gets the item properties.
      *
-     * @param mixed $item
+     * @param $item
      * @return array
      */
-    public function properties(mixed $item): array
+    public function properties($item): array
     {
         return [];
     }
@@ -104,10 +102,10 @@ abstract class Gridable
     /**
      * Output the grid item.
      *
-     * @param mixed $item item
+     * @param $item item
      * @return string
      */
-    public function output(mixed $item): string
+    public function output($item): string
     {
         $key = $this->key($item);
         $name = $this->itemName($item);

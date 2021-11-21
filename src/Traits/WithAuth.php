@@ -40,10 +40,10 @@ trait WithAuth
     /**
      * Run on auth status changed.
      *
-     * @param mixed $user logged user in case is logged
+     * @param $user logged user in case is logged
      * @return void
      */
-    protected function handleAuthStatusChanged(mixed $user): void
+    protected function handleAuthStatusChanged($user): void
     {
         
     }
@@ -73,9 +73,9 @@ trait WithAuth
     /**
      * Gets the current logged user.
      *
-     * @return mixed
+     * 
      */
-    public function getUserProperty(): mixed
+    public function getUserProperty()
     {
         return auth()->user();
     }

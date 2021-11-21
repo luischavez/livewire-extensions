@@ -64,9 +64,9 @@ class Callback extends Transformable
     /**
      * Constructor.
      *
-     * @param Component|Caller|null $caller caller
+     * @param $caller caller
      */
-    public function __construct(Component|Caller|null $caller = null)
+    public function __construct($caller = null)
     {
         if ($caller !== null) {
             if ($caller instanceof Component) {
@@ -104,10 +104,10 @@ class Callback extends Transformable
      * @param string        $event          event
      * @param string|null   $tag            tag
      * @param string|null   $component      component
-     * @param mixed         ...$parameters  parameters
+     * @param          ...$parameters  parameters
      * @return void
      */
-    protected function addRoute(string $type, string $event, ?string $tag = null, ?string $component = null, mixed ...$parameters): void
+    protected function addRoute(string $type, string $event, ?string $tag = null, ?string $component = null, ...$parameters): void
     {
         $this->routes[] = [
             'type'          => $type,
@@ -129,10 +129,10 @@ class Callback extends Transformable
     /**
      * Add an extra data to return on callback fire.
      *
-     * @param mixed ...$value
+     * @param ...$value
      * @return self
      */
-    public function with(mixed ...$value): self
+    public function with(...$value): self
     {
         $this->extra = array_merge($this->extra, $value);
 
@@ -145,10 +145,10 @@ class Callback extends Transformable
      * @param string        $event
      * @param string|null   $tag
      * @param string|null   $component
-     * @param mixed         ...$parameters
+     * @param         ...$parameters
      * @return self
      */
-    public function to(string $event, ?string $tag = null, ?string $component = null, mixed ...$parameters): self
+    public function to(string $event, ?string $tag = null, ?string $component = null, ...$parameters): self
     {
         $this->addRoute('component', $event, $tag, $component, ...$parameters);
 
@@ -159,10 +159,10 @@ class Callback extends Transformable
      * Add a self route.
      *
      * @param string    $event
-     * @param mixed     ...$parameters
+     * @param     ...$parameters
      * @return self
      */
-    public function toSelf(string $event, mixed ...$parameters): self
+    public function toSelf(string $event, ...$parameters): self
     {
         if (!$this->caller) {
             throw new CallbackException("Cant resolve caller for this callback");
@@ -198,10 +198,10 @@ class Callback extends Transformable
     /**
      * Fires this callback.
      *
-     * @param mixed ...$parameters additional parameters
+     * @param ...$parameters additional parameters
      * @return void
      */
-    public function fire(mixed ...$parameters)
+    public function fire(...$parameters)
     {
         foreach ($this->routes() as $definition) {
             $route = $definition['route'];
@@ -220,7 +220,7 @@ class Callback extends Transformable
     /**
      * @inheritDoc
      */
-    public function toJavascript(): mixed
+    public function toJavascript()
     {
         $data = [
             'caller'    => $this->caller,
@@ -237,7 +237,7 @@ class Callback extends Transformable
     /**
      * @inheritDoc
      */
-    public static function fromJavascript(mixed $value): Callback
+    public static function fromJavascript($value): Callback
     {
         if (!is_array($value)) {
             return null;

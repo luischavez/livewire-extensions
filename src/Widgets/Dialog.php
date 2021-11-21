@@ -76,9 +76,9 @@ class Dialog extends ServiceComponent
     /**
      * Input value.
      * 
-     * @var mixed
+     * 
      */
-    public mixed $inputValue = null;
+    public $inputValue = null;
 
     /**
      * Input extra values.
@@ -194,11 +194,11 @@ class Dialog extends ServiceComponent
     /**
      * Triggered on input event.
      *
-     * @param mixed $value input value
-     * @param mixed $extra extra values
+     * @param $value input value
+     * @param $extra extra values
      * @return void
      */
-    public function onInput(mixed $value, mixed ...$extra): void
+    public function onInput($value, ...$extra): void
     {
         $this->inputValue = $value;
         $this->inputExtra = $extra;

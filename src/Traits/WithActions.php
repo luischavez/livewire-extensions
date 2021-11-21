@@ -20,10 +20,10 @@ trait WithActions
      * Executes an action.
      *
      * @param string    $actionName
-     * @param mixed     ...$parameters
-     * @return mixed
+     * @param     ...$parameters
+     * 
      */
-    public function executeAction(string $actionName, mixed ...$parameters): mixed
+    public function executeAction(string $actionName, ...$parameters)
     {
         return $this->actionService->execute($actionName, ...$parameters);
     }
@@ -33,10 +33,10 @@ trait WithActions
      *
      * @param string    $actionName action name
      * @param array     $parameters action parameters
-     * @param mixed     $result     action result
+     * @param     $result     action result
      * @return void
      */
-    protected function handleActionCompleted(string $actionName, array $parameters, mixed $result): void
+    protected function handleActionCompleted(string $actionName, array $parameters, $result): void
     {
 
     }
@@ -47,9 +47,9 @@ trait WithActions
      * @param string    $actionName action name
      * @param string    $event      event name
      * @param array     $parameters event parameters
-     * @return mixed
+     * 
      */
-    protected function handleActionCallbackEvent(string $actionName, string $event, array $parameters): mixed
+    protected function handleActionCallbackEvent(string $actionName, string $event, array $parameters)
     {
         return $this->actionService->handleActionCallbackEvent($actionName, $event, $parameters);
     }

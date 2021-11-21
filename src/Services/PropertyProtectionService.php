@@ -88,7 +88,7 @@ class PropertyProtectionService extends LivewireService
     /**
      * @inheritDoc
      */
-    public function updating(string $name, mixed $value): void
+    public function updating(string $name, $value): void
     {
         $this->lookup();
         self::throwIfProtected($name, $this->protected);

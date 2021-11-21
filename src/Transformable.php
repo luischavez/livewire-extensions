@@ -21,18 +21,16 @@ abstract class Transformable implements Wireable
 
     /**
      * Transform the instance to a javascript value.
-     *
-     * @return mixed
      */
-    public abstract function toJavascript(): mixed;
+    public abstract function toJavascript();
 
     /**
      * Create a new instance of this class from a javascript value.
      *
-     * @param mixed $value
+     * @param $value
      * @return self
      */
-    public abstract static function fromJavascript(mixed $value): self;
+    public abstract static function fromJavascript($value): self;
 
     /**
      * @inheritDoc

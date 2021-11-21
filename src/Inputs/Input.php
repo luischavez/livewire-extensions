@@ -13,9 +13,9 @@ abstract class Input extends Proxy
     /**
      * Input value.
      *
-     * @var mixed
+     * 
      */
-    public mixed $value = null;
+    public $value = null;
 
     /**
      * @inheritDoc
@@ -38,7 +38,7 @@ abstract class Input extends Proxy
     /**
      * @inheritDoc
      */
-    public function updated(string $key, mixed $value): void
+    public function updated(string $key, $value): void
     {
         $this->validateOnly($key);
     }
@@ -62,9 +62,9 @@ abstract class Input extends Proxy
     /**
      * Gets the input value.
      *
-     * @return mixed
+     * 
      */
-    public function value(): mixed
+    public function value()
     {
         return $this->value;
     }

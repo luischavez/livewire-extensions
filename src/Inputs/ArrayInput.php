@@ -175,11 +175,11 @@ class ArrayInput extends Input
     /**
      * Gets the item value.
      *
-     * @param mixed $id
-     * @param mixed $item
-     * @return mixed
+     * @param $id
+     * @param $item
+     * 
      */
-    protected function itemValue(mixed $id, mixed $item): mixed
+    protected function itemValue($id, $item)
     {
         return $item;
     }
@@ -187,11 +187,11 @@ class ArrayInput extends Input
     /**
      * Render the item.
      *
-     * @param mixed $id
-     * @param mixed $item
+     * @param $id
+     * @param $item
      * @return string
      */
-    protected function renderItem(mixed $id, mixed $item): string
+    protected function renderItem($id, $item): string
     {
         return strval($item);
     }
@@ -280,10 +280,10 @@ class ArrayInput extends Input
      * @inheritDoc
      *
      * @param string    $key    property name
-     * @param mixed     $value  property value
+     * @param     $value  property value
      * @return void
      */
-    public function updated(string $key, mixed $value): void
+    public function updated(string $key, $value): void
     {
         if ($key == 'searchTerm') {
             $this->searchByTerm($value);
@@ -293,10 +293,10 @@ class ArrayInput extends Input
     /**
      * Select a id from the options.
      *
-     * @param mixed $id
+     * @param $id
      * @return void
      */
-    public function select(mixed $id): void
+    public function select($id): void
     {
         $value = $id === null ? null : $this->itemValue($id, $this->options[$id]);
 
@@ -326,10 +326,10 @@ class ArrayInput extends Input
     /**
      * Removes the id from the selected ids.
      *
-     * @param mixed $id
+     * @param $id
      * @return void
      */
-    public function unselect(mixed $id): void
+    public function unselect($id): void
     {
         if ($id === null) {
             return;
@@ -351,7 +351,7 @@ class ArrayInput extends Input
     /**
      * @inheritDoc
      */
-    public function value(): mixed
+    public function value()
     {
         if ($this->multiple) {
             return array_keys($this->value);

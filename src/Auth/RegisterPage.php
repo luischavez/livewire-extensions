@@ -82,10 +82,10 @@ class RegisterPage extends AuthPage
      * @inheritDoc
      *
      * @param string $key
-     * @param mixed $value
+     * @param $value
      * @return void
      */
-    public function updated(string $key, mixed $value): void
+    public function updated(string $key, $value): void
     {
         parent::updated($key, $value);
 

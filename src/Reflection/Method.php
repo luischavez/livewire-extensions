@@ -12,9 +12,9 @@ class Method
     /**
      * Searched object instance.
      *
-     * @var mixed
+     * 
      */
-    protected mixed $instance;
+    protected $instance;
 
     /**
      * Name.
@@ -40,10 +40,10 @@ class Method
     /**
      * Constructor.
      *
-     * @param mixed             $instance   searched object instance
+     * @param             $instance   searched object instance
      * @param ReflectionMethod  $object     reflection instance
      */
-    public function __construct(mixed $instance, ReflectionMethod $reflectionMethod)
+    public function __construct($instance, ReflectionMethod $reflectionMethod)
     {
         $this->instance = $instance;
         $this->name = $reflectionMethod->getName();
@@ -74,10 +74,10 @@ class Method
     /**
      * Invoke the method and gets the result.
      *
-     * @param mixed ...$parameters parameters
-     * @return mixed
+     * @param ...$parameters parameters
+     * 
      */
-    public function invoke(mixed ...$parameters): mixed
+    public function invoke(...$parameters)
     {
         if (!$this->reflectionMethod->isPublic()) {
             $this->reflectionMethod->setAccessible(true);

@@ -2,7 +2,6 @@
 
 namespace Luischavez\Livewire\Extensions\Traits;
 
-use Livewire\Component;
 use Luischavez\Livewire\Extensions\Services\SpawnService;
 
 /**
@@ -20,12 +19,12 @@ trait WithSpawns
     /**
      * Spawn a component.
      *
-     * @param string            $spawner    spawner name
-     * @param Component|string  $component  component name or instance
-     * @param array             $properties component properties
+     * @param string    $spawner    spawner name
+     * @param     $component  component name or instance
+     * @param array     $properties component properties
      * @return void
      */
-    protected function spawn(string $spawner, Component|string $component, array $properties = []): void
+    protected function spawn(string $spawner, $component, array $properties = []): void
     {
         $this->spawnService->spawn($spawner, $component, $properties);
     }

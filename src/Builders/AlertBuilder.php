@@ -84,24 +84,18 @@ class AlertBuilder
 
     /**
      * Input value.
-     *
-     * @var mixed
      */
-    protected mixed $inputValue = null;
+    protected $inputValue = null;
 
     /**
      * Close the alert after seconds elapsed.
-     *
-     * @var mixed
      */
-    protected mixed $closeAfter = null;
+    protected $closeAfter = null;
 
     /**
      * Dimissable flag.
-     *
-     * @var mixed
      */
-    protected mixed $dimissable = null;
+    protected $dimissable = null;
 
     /**
      * Cancel button visible status.
@@ -245,11 +239,11 @@ class AlertBuilder
      * Add an input to the alert.
      *
      * @param string    $name       input name
-     * @param mixed     $value      input value
+     * @param     $value      input value
      * @param array     $options    input options
      * @return self
      */
-    public function withInput(string $name, mixed $value = null, array $options = []): self
+    public function withInput(string $name, $value = null, array $options = []): self
     {
         $this->inputName = $name;
         $this->inputValue = $value;

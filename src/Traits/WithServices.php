@@ -145,10 +145,10 @@ trait WithServices
      * Run on property updating.
      *
      * @param string    $name
-     * @param mixed     $value
+     * @param     $value
      * @return void
      */
-    public function updatingWithServices(string $name, mixed $value): void
+    public function updatingWithServices(string $name, $value): void
     {
         /**
          * @var LivewireService
@@ -162,10 +162,10 @@ trait WithServices
      * Run on property updated.
      *
      * @param string    $name
-     * @param mixed     $value
+     * @param     $value
      * @return void
      */
-    public function updatedWithServices(string $name, mixed $value): void
+    public function updatedWithServices(string $name, $value): void
     {
         /**
          * @var LivewireService
