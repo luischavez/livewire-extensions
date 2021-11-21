@@ -54,7 +54,7 @@ class Property
     {
         $this->instance = $instance;
         $this->name = $reflectionProperty->getName();
-        $this->type = $reflectionProperty->getType() ? $reflectionProperty->getType()->getName() : null;
+        $this->type = $reflectionProperty->getType()?->getName();
 
         if (!$reflectionProperty->isPublic()) {
             $reflectionProperty->setAccessible(true);

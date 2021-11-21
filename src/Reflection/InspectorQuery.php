@@ -176,7 +176,7 @@ class InspectorQuery
                 : $object->getReturnType();
 
             if ($this->type !== null) {
-                $typeName = $type ? $type->getName() : null;
+                $typeName = $type?->getName();
 
                 if ($typeName !== $this->type
                     && !is_subclass_of($typeName, $this->type)) {
