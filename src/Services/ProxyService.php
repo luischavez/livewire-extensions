@@ -736,11 +736,15 @@ class ProxyService extends LivewireService
     /**
      * Render the proxy.
      *
-     * @param View $view component view
+     * @param View|null $view component view
      * @return string|null
      */
-    public function render(View $view): ?View
+    public function render(?View $view): ?View
     {
+        if (!$view) {
+            return null;
+        }
+
         $proxyView = $this->proxy?->render();
 
         if ($proxyView !== null) {
