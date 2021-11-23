@@ -68,6 +68,10 @@ trait WithAuth
     public function logout(): void
     {
         $this->authService->logout();
+
+        if (isset($this->redirectOnLogout)) {
+            $this->redirectRoute($this->redirectOnLogout);
+        }
     }
 
     /**

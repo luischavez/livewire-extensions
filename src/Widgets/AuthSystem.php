@@ -71,6 +71,28 @@ class AuthSystem extends ProxyComponent
     public bool $redirecting = false;
 
     /**
+     * Redirect to route on logout.
+     *
+     * @var string|null
+     */
+    public ?string $redirectOnLogout = null;
+
+    /**
+     * Protected properties.
+     * 
+     * @var array
+     */
+    protected array $protectedProperties = [
+        '*',
+        '_except' => [
+            'proxyData',
+            'redirectAfter',
+            'show',
+            'modal',
+        ],
+    ];
+
+    /**
      * @inheritDoc
      */
     public function __construct($id = null)
